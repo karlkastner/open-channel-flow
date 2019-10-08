@@ -1,0 +1,21 @@
+functions for open channel flow, sub modules:
+
+@Backwater1D
+	gradually varied flow in 1D (backwater)
+@Potential_Flow
+	depth averaged potential flow, numerical solution
+@Potential_Flow_Analytic
+	depth averaged potential flow, analytical solution
+rating-curve
+	empirical rating curves
+@Side_Weir
+	analytical solution to lateral outflow over a side weir
+@SWE
+	dynamical solution of the shallow water equation (saint-venant-equation)
+	in 1D
+@SWE_2d
+	dynamical solution of the shallow water equation (saint-venant-equation)
+	in 2D
+velocity-profile
+	vertical and transverse velocity profiles of the streamwise velocity
+
