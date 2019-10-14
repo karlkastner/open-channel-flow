@@ -8,6 +8,6 @@ function C = cd_to_chezy(cd)
 	else
 		g = Constant.gravity;
 	end
-	C = sqrt(g/cd)
+	C = sqrt(g/cd);
 end
 

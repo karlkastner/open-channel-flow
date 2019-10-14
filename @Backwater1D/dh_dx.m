@@ -63,8 +63,9 @@ function dh_dx = dh_dx(obj,x,h)
 	end
 
 	% due to width-variation
-	% 2018 11 02 TODO this is wrong, see paper 3 
-	S_w = h/W*dw_dx;
+	% 2018 11 02 note S_w = 0, see paper 3 
+	%S_w = h/W*dw_dx;
+	S_w = 0;
 
 	% change of flow depth along channel
 	dh_dx = (S_f - S_w - S_b)./(1 - F2);

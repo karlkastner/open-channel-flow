@@ -35,7 +35,7 @@ classdef Backwater1D < handle
 		%struct('InitialStep',0.1, ...
 		%	      'MaxStep', 1e-3);
 		% acceleration by gravity
-		g    = 9.81;
+		g    = Constant.gravity;
 		rt
 	end % properties
 

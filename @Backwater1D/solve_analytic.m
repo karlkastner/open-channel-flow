@@ -5,10 +5,11 @@
 %% analytical solution to the gradually varied flow equation (bresse method)
 %
 function [x, h, zs, u] = solve_analytic(obj,Q,C,W,S0,h0,nn)
+	% TODO, no magic numbers
 	n = 3;
 	m = 3;
 
-	g = 9.81;
+	g = Constant.gravity;
 
 	% normal flow depth
 	% chow 10-14
@@ -18,8 +19,10 @@ function [x, h, zs, u] = solve_analytic(obj,Q,C,W,S0,h0,nn)
 	% chow 10-13
 	yc = critical_flow_depth(Q,W);
 
-	% relative depth
+	% depth
 	y = h0 + (yn-h0)*(0:nn-1)'/nn;
+
+	% relative depth
 	u = y./yn;
 
 	% note that (yc/yn)^2 = C^2/g*S0
@@ -36,14 +39,15 @@ function [x, h, zs, u] = solve_analytic(obj,Q,C,W,S0,h0,nn)
 	x(idx,1)  = yn/S0*(u(idx) ...
 		  - quad(@(u_) 1./(1-u_.^n),0,u(idx)) ...
 		   + (yc/yn)^m*quad(@(u_) u_.^(n-m)./(1-u_.^n),0,u(idx)) );
+		% x(idx,1) = -x(idx,1);
 		%1./(1-linspace(0,u(idx),10).^n)
-		u_ = linspace(0,u(idx),100);
-		u_.^(n-m)./(1-u_.^n)
-		quad(@(u_) 1./(1-u_.^n),0,u(idx))
-		quad(@(u_) u_.^(n-m)./(1-u_.^n),0,u(idx))
-		pause
+		%u_ = linspace(0,u(idx),100);
+		%%u_.^(n-m)./(1-u_.^n)
+		%quad(@(u_) 1./(1-u_.^n),0,u(idx))
+		%quad(@(u_) u_.^(n-m)./(1-u_.^n),0,u(idx))
 	end
 	case {1}
+		% TODO form 1 seems to be buggy, 2 seem correct
 		% rectangular channel
 		% bresse 1860
 		% allen 1968, eq 3
@@ -54,7 +58,7 @@ function [x, h, zs, u] = solve_analytic(obj,Q,C,W,S0,h0,nn)
 		% eq 10.12 in chow
 		%x = -yn/S0*(u - (1-(yc/yn)^3)*(fun2(u)-fun2(u(1))));
 
-		x = gvf_x_chow(u,yc,yn,C,S0) - gvf_x_chow(u(1),yc,yn,C,S0);
+		x = obj.gvf_x_chow(u,yc,yn,C,S0) - obj.gvf_x_chow(u(1),yc,yn,C,S0);
 	end
 %	x = fun2(u) - fun2(u(1));
 %	x(:,2) =  fun2(u) - fun2(u(1));
@@ -73,5 +77,6 @@ function [x, h, zs, u] = solve_analytic(obj,Q,C,W,S0,h0,nn)
 		f = (6*y./yn - (1-sqrt(yc./yn)^3).*(log((y.^2+1*y*yn+yn.^2)./(y-yn).^2) ...
 				- 2/3*atan(sqrt(3)*yn./(2*y+yn))));
 	end
-end
+end % solve_analytical
+
 

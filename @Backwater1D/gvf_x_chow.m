@@ -2,7 +2,7 @@
 %
 %% analytical solution to the gradually varied flow equation (backwater equation)
 %% c.f. Chow, Bresse
-function f = gvf_x_chow(u,yc,yn,C,S0)
+function f = gvf_x_chow(obj,u,yc,yn,C,S0)
 	if (issym(u))
 		syms g a;
 		yc_div_yn_3 = a^(1/3);

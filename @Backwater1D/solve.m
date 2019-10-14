@@ -36,7 +36,8 @@ else
 	if (isfield(sopt,'InitialStep'))
 		sopt.InitialStep = sopt.InitialStep/(X(2)-X(1));
 	end
-	[x, h] = obj.solver(@(xi,h) obj.dh_dxi(xi,h), [0 1], h0, sopt);
+
+	[x, h] = obj.solver(@(xi,h) obj.dh_dxi(xi,h), [0, 1], h0, sopt);
 	x=X(1)+(X(2)-X(1))*x;
 %	[(x(2)-x(1)) (x(3)-x(2))]
 	%[x h] = solver(@(x,h) backwater_dh_dx(x,h,Q,C,S0,W,widechannel), X, h0, opt);
