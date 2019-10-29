@@ -76,6 +76,10 @@ function [x, u, u2] = transverse_velocity_profile(C,harg,w,S,lambda,n,bc)
 	u2 = A \ b;
 	u  = sqrt(u2);
 
+	% scale to full discharge
+	Q = mean(normal_flow_discharge(h,w,C,S));
+	u = u*Q/(w*sum(mid(h.*u))/(n-1));
+
 if (0)
 	% inner region
 	mu = mean(u);

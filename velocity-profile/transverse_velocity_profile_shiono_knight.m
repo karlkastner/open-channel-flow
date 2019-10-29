@@ -2,6 +2,10 @@
 %% transverse profile of the streamwise velocity, determined analytically
 %% by the method of shiono and knight
 %% shape of velocity profile only dependent on lambda, f, H, not slope
+% y : across channel coordinate
+% S : slope
+% H : depth
+% w : width
 function [U, dU, y0, app] = transverse_velocity_profile_shiono_knight(y,H,S,f,lambda,w)
 
 	g = Constant.gravity;
