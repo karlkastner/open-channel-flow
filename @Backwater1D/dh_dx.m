@@ -25,7 +25,9 @@ function dh_dx = dh_dx(obj,x,h)
 	p   = -obj.rt.friction_coefficient_dronkers(abs(Q0)./Qhr);
 
 	S_b = obj.dzb_dx(x);
-	C  = obj.chezy(x);
+	
+	C  = obj.chezy(x,h);
+
 	W  = obj.width(x);
 	dw_dx = obj.dw_dx(x);
 

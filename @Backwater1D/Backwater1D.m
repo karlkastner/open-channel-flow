@@ -72,14 +72,22 @@ classdef Backwater1D < handle
 			end
 		end
 
-		function chezy = chezy(obj,x)
+		% TODO, this needs only to be tested once and then set
+		function chezy = chezy(obj,x,h)
 			if(isa(obj.chezy_,'function_handle'))
-				chezy = obj.chezy_(x);
+				switch (nargin(obj.chezy_))
+				    case {1}
+					chezy = obj.chezy_(x);
+				    case {2}
+					chezy  = obj.chezy_(x,h);
+				    otherwise
+					error('Chezy coefficient function must take 1 (x) or 2 (x and h) arguments.');
+				end
 			else
 				% constant value
 				chezy = obj.chezy_;
 			end
-		end
+		end % chezy
 			
 		function width = width(obj,x)
 			if (isa(obj.width_,'function_handle'))
