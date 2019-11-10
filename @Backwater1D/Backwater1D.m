@@ -21,7 +21,7 @@
 classdef Backwater1D < handle
 	properties
 		Q0
-		Q1_
+		Qt_
 		chezy_
 		width_
 		zb_
@@ -64,11 +64,11 @@ classdef Backwater1D < handle
 			end
 		end
 
-		function Q1 = Q1(obj,x)
-			if (isa(obj.Q1_,'function_handle'))
-				Q1 = obj.Q1_(x);
+		function Qt = Qt(obj,x)
+			if (isa(obj.Qt_,'function_handle'))
+				Qt = obj.Qt_(x);
 			else
-				Q1 = obj.Q1_;
+				Qt = obj.Qt_;
 			end
 		end
 

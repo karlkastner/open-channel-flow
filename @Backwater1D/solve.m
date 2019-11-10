@@ -11,21 +11,21 @@
 % dy/dx = 1./(1-F^2)*(S0 - S_f  - 2*beta*Q/(g*A^2)*I - Q^2/(g*A^2)*dbeta_dx)
 % TODO h0 should better be z0 and zb
 % TODO lateral inflow I = 0
-function [x, h, zs, dh_dx, dzs_dx] = solve(obj,Q0,Q1,chezy,width,zb,z0_downstream,X)
+function [x, h, zs, dh_dx, dzs_dx] = solve(obj,Q0,Qt,chezy,width,zb,z0_downstream,X)
 	obj.X  = X;
 	obj.Q0 = Q0;
-	obj.Q1_ = Q1;
+	obj.Qt_ = Qt;
 	obj.chezy_ = chezy;
 	obj.width_ = width;
 	obj.zb_    = zb;
 
 if (0)
-	[x zs] = obj.solver(@(x,h) obj.dzs_dx(x,h), X, h0, opt);
+	[x, zs] = obj.solver(@(x,h) obj.dzs_dx(x,h), X, h0, opt);
 	zb = x*S0-h0;
 	h  = zs-zb;
 else
 	% initial depth
-	h0 = z0_downstream-obj.zb(X(1));
+	h0 = z0_downstream-min(obj.zb(X)); %(1));
 
 	% solve backwater ODE
 	% the equation is solved for the flow depth, not surface elevation,
@@ -34,20 +34,22 @@ else
 	% make initial step relatove
 	sopt = obj.sopt;
 	if (isfield(sopt,'InitialStep'))
-		sopt.InitialStep = sopt.InitialStep/(X(2)-X(1));
+		sopt.InitialStep = sopt.InitialStep/abs(X(2)-X(1));
 	end
 
-	[x, h] = obj.solver(@(xi,h) obj.dh_dxi(xi,h), [0, 1], h0, sopt);
-	x=X(1)+(X(2)-X(1))*x;
-%	[(x(2)-x(1)) (x(3)-x(2))]
+%	[x, h] = obj.solver(@(xi,h) obj.dh_dxi(xi,h), [0, 1], h0, sopt);
+%	x=X(1)+(X(2)-X(1))*x;
+	[x, h] = obj.solver(@(xi,h) obj.dh_dx(xi,h), X, h0, sopt);
 	%[x h] = solver(@(x,h) backwater_dh_dx(x,h,Q,C,S0,W,widechannel), X, h0, opt);
 
-	if (x(end)<X(end)-(X(2)-X(1))*sqrt(eps))
+	if (abs(X(end)-x(end))>abs(X(2)-X(1))*sqrt(eps))
 		error('ode solver failed');
 	end
 
 	if (nargout() > 2)
 		zs  = obj.zb(x) + h;
+%		plot(x,[zs,obj.zb(x)])
+%pause
 	end
 	
 end % else of if 0

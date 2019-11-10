@@ -16,7 +16,7 @@ breaklines=true
 \setlength{\cftsubsecnumwidth}{3.5em}
 
 \title{Manual for Package:
-open-channel-flow\protect\\Revision 1:5M
+open-channel-flow\protect\\Revision 1:6M
 }
 \author{Karl K\"astner}
 %\date{}
@@ -31,7 +31,7 @@ open-channel-flow\protect\\Revision 1:5M
 % abstract
 
 
-\section{@Backwater1D}
+\section{w/@Backwater1D}
 \subsection{Backwater1D}
 ${}$
 \begin{lstlisting}
@@ -69,6 +69,11 @@ ${}$
  change of depth along channel for the backwater equation
  beta : momentum coefficient
  this is effectively an equation in h^3
+
+\end{lstlisting}
+\subsection{dh\_dx\_}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{dzs\_dx}
@@ -118,7 +123,12 @@ ${}$
 u_.^(n-m)./(1-u_.^n)
 
 \end{lstlisting}
-\section{@Potential\_Flow}
+\subsection{solve\_matrix}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{w/@Potential\_Flow}
 \subsection{Potential\_Flow}
 ${}$
 \begin{lstlisting}
@@ -291,7 +301,7 @@ ${}$
  determine the vertical velocity from continuity
 
 \end{lstlisting}
-\section{@Potential\_Flow\_Analytic}
+\section{w/@Potential\_Flow\_Analytic}
 \subsection{Potential\_Flow\_Analytic}
 ${}$
 \begin{lstlisting}
@@ -335,7 +345,7 @@ ${}$
  numerically follow path along streamline by integrating the velocity
 
 \end{lstlisting}
-\section{@SWE}
+\section{w/@SWE}
 \subsection{SWE}
 ${}$
 \begin{lstlisting}
@@ -511,7 +521,7 @@ ${}$
  predefined functions of channel geometries
 
 \end{lstlisting}
-\section{@SWE\_2d}
+\section{w/@SWE\_2d}
 \subsection{SWE\_2d}
 ${}$
 \begin{lstlisting}
@@ -537,7 +547,7 @@ ${}$
  solve SWE for statinary flow (dU/dt = dQ/dt = 0)
 
 \end{lstlisting}
-\section{@Side\_Weir}
+\section{w/@Side\_Weir}
 \subsection{Side\_Weir}
 ${}$
 \begin{lstlisting}
@@ -556,31 +566,7 @@ ${}$
  along-channel surface elevation for (critical) lateral outflow over a side-weir
 
 \end{lstlisting}
-\section{open-channel-flow}
-\begin{lstlisting}
-functions for open channel flow, sub modules:
-
-@Backwater1D
-	gradually varied flow in 1D (backwater)
-@Potential_Flow
-	depth averaged potential flow, numerical solution
-@Potential_Flow_Analytic
-	depth averaged potential flow, analytical solution
-rating-curve
-	empirical rating curves
-@Side_Weir
-	analytical solution to lateral outflow over a side weir
-@SWE
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 1D
-@SWE_2d
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 2D
-velocity-profile
-	vertical and transverse velocity profiles of the streamwise velocity
-
-
-\end{lstlisting}
+\section{w}
 \subsection{Potential\_Flow\_Map}
 ${}$
 \begin{lstlisting}
@@ -632,7 +618,7 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\section{meander-bend/@Equilibrium\_Bend}
+\section{w/meander-bend/@Equilibrium\_Bend}
 \subsection{Equilibrium\_Bend}
 ${}$
 \begin{lstlisting}
@@ -684,7 +670,7 @@ ${}$
  in a river meander
 
 \end{lstlisting}
-\section{meander-bend}
+\section{w/meander-bend}
 \subsection{Kinoshita}
 ${}$
 \begin{lstlisting}
@@ -724,13 +710,13 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\section{old}
+\section{w/old}
 \subsection{UniformFlow}
 ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\section{rating-curve}
+\section{w/rating-curve}
 \subsection{ChezyRatingCurve}
 ${}$
 \begin{lstlisting}
@@ -835,31 +821,7 @@ ${}$
  determine channel width
 
 \end{lstlisting}
-\section{open-channel-flow}
-\begin{lstlisting}
-functions for open channel flow, sub modules:
-
-@Backwater1D
-	gradually varied flow in 1D (backwater)
-@Potential_Flow
-	depth averaged potential flow, numerical solution
-@Potential_Flow_Analytic
-	depth averaged potential flow, analytical solution
-rating-curve
-	empirical rating curves
-@Side_Weir
-	analytical solution to lateral outflow over a side weir
-@SWE
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 1D
-@SWE_2d
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 2D
-velocity-profile
-	vertical and transverse velocity profiles of the streamwise velocity
-
-
-\end{lstlisting}
+\section{w}
 \subsection{surface\_slope}
 ${}$
 \begin{lstlisting}
@@ -882,6 +844,13 @@ ${}$
  iterative (recursive) reflection and transmission
 
 \end{lstlisting}
+\section{w/test/test\_Backwater1D}
+\subsection{test\_bw1d\_solve\_matrix}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{w}
 \subsection{test\_inverse\_backwater\_curve}
 ${}$
 \begin{lstlisting}
@@ -892,7 +861,7 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\section{uniform-stationary-flow}
+\section{w/uniform-stationary-flow}
 \subsection{chezy2drag}
 ${}$
 \begin{lstlisting}
@@ -943,7 +912,7 @@ ${}$
  normal flow velocity in uniform stationary flow
 
 \end{lstlisting}
-\section{velocity-profile/@Log\_profile}
+\section{w/velocity-profile/@Log\_profile}
 \subsection{Log\_profile}
 ${}$
 \begin{lstlisting}
@@ -1019,7 +988,7 @@ ${}$
  depth averaged velocity
 
 \end{lstlisting}
-\section{velocity-profile/@Log\_profile\_with\_bend\_correction}
+\section{w/velocity-profile/@Log\_profile\_with\_bend\_correction}
 \subsection{Log\_profile\_with\_bend\_correction}
 ${}$
 \begin{lstlisting}
@@ -1073,7 +1042,7 @@ ${}$
  streamwise velocity
 
 \end{lstlisting}
-\section{velocity-profile/@Log\_profile\_with\_cubic\_wake}
+\section{w/velocity-profile/@Log\_profile\_with\_cubic\_wake}
 \subsection{Log\_profile\_with\_cubic\_wake}
 ${}$
 \begin{lstlisting}
@@ -1104,7 +1073,7 @@ ${}$
  regression matrix
 
 \end{lstlisting}
-\section{velocity-profile/@Log\_profile\_with\_dip}
+\section{w/velocity-profile/@Log\_profile\_with\_dip}
 \subsection{Log\_profile\_with\_dip}
 ${}$
 \begin{lstlisting}
@@ -1117,7 +1086,7 @@ ${}$
  fit the vertical velocity profile
 
 \end{lstlisting}
-\section{velocity-profile/@Log\_profile\_with\_linear\_bend\_correction}
+\section{w/velocity-profile/@Log\_profile\_with\_linear\_bend\_correction}
 \subsection{Log\_profile\_with\_linear\_bend\_correction}
 ${}$
 \begin{lstlisting}
@@ -1154,7 +1123,7 @@ ${}$
  regression matrix
 
 \end{lstlisting}
-\section{velocity-profile/@Log\_profile\_with\_wake}
+\section{w/velocity-profile/@Log\_profile\_with\_wake}
 \subsection{Log\_profile\_with\_wake}
 ${}$
 \begin{lstlisting}
@@ -1193,7 +1162,7 @@ ${}$
  u = us/k ln(z) - us/k ln(z0) + us/k (2/H^2 z  - 3/H^3 z^2)
 
 \end{lstlisting}
-\section{velocity-profile/@VP}
+\section{w/velocity-profile/@VP}
 \subsection{VP}
 ${}$
 \begin{lstlisting}
@@ -1246,7 +1215,7 @@ function [s_rel s_err s_dat rho res m2 u_pred fdx] = velocity_variation(U)
  thus, the only acceptible more robust estimate would be mean absolute deviation
 
 \end{lstlisting}
-\section{velocity-profile/@Vertical\_profile}
+\section{w/velocity-profile/@Vertical\_profile}
 \subsection{Vertical\_profile}
 ${}$
 \begin{lstlisting}
@@ -1267,7 +1236,7 @@ ${}$
  predict velocity along the vertical based on profile
 
 \end{lstlisting}
-\section{velocity-profile}
+\section{w/velocity-profile}
 \subsection{fit\_displacement\_profile}
 ${}$
 \begin{lstlisting}
@@ -1359,7 +1328,12 @@ ${}$
  vertical profile of the streamwise velocity in non-uniform flow
 
 \end{lstlisting}
-\section{wrapper}
+\subsection{z2s\_rational}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{w/wrapper}
 \subsection{discharge2stage}
 ${}$
 \begin{lstlisting}
