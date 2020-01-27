@@ -42,6 +42,10 @@ function derive_lateral_outflow_analytic(obj)
 	sol.const.f = 1;
 	sol.v.f     = 2*(1-2*abs(x0)/ws);
 	sol.quad.f  = 30*(x0/ws-1/2)^2*(x0/ws+1/2)^2;
+	% TODO normalization for sk
+	% TODO, sk take a square root
+	sol.rect_sk.f = (1-exp(-1*(x + 1/2*ws)))*(1 - exp(-1*(1/2-x*ws)))
+	sol.tri_sk.f  = 2*(1-exp(-1*(x + 1/2*ws)))*(1 - exp(-1*(1/2-x*ws)))*(ws/2+x)
 	%ffun.cos   = (cos(2*pi*y0/ws)+1)
 	% this is only for the side outflow, not including the main channel flow
 	phi       = -1/sym('pi')*log(sqrt((x-x0)^2 + (y-y0)^2));

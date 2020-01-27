@@ -10,7 +10,9 @@ function [t,xy] = streamline(obj, T, xy0, ufield, vfield, opt)
 	case {'u'}
 		opt = odeset(opt,'jacobian',obj.fun.J);
 	case {'ubed'}
-		opt = odeset(opt,'jacobian',obj.fun.Jb);
+		if (~isempty(obj.fun.Jb))
+			opt = odeset(opt,'jacobian',obj.fun.Jb);
+		end
 	otherwise
 		error('here');
 	end % ufield

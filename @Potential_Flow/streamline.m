@@ -28,7 +28,15 @@ function [t, xy] = streamline(obj, T, xy0, ufield, vfield, opt)
 %	if (nargin()>5)
 %		opt=odeset(opt,'Events', stopevent);
 %	end
-	opt = odeset(opt,'RelTol',1e-4);
+	% TODO, no magic numbers
+	if (isempty(opt.RelTol))
+		opt = odeset(opt,'RelTol',1e-2);
+	end
+	if (isfield(opt,'solver'))
+		solver = opt.solver;
+	else
+		solver = @ode23s;
+	end
 	% TODO, nasty fix
 	global xystop
 	xystop = xy0;
@@ -38,7 +46,6 @@ function [t, xy] = streamline(obj, T, xy0, ufield, vfield, opt)
 		% allow bed flow leaving inner bend to reemerge at outer opposit bank
 		xy0 = xystop;
 		xystop = [];
-		solver = @ode23s;
 		%solver = @ode15s;
 		%solver = @ode45;
 		[t_,xy_] = solver(@(t,xy) [obj.(ufield)(xy(1),xy(2));

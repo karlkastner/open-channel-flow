@@ -30,22 +30,22 @@ function [sol,obj] = lateral_outflow(obj,shape,varargin)
 		obj.fun.J   = @(t,xy) sol.(shape).nfun.J(xy(1),xy(2),alpha,beta);
 		obj.fun.Jb  = @(t,xy) sol.(shape).nfun.Jb(xy(1),xy(2),alpha,beta);
 		obj.fun.y0  = @(x,y,alpha,beta)  sol.(shape).nfun.y0([],[],alpha,[]);
-	case {3,4}
-		u0 = varargin{1};
-		Qs = varargin{2};
-		ws = varargin{2};
-		if (length(varargin) > 3)
-			h  = varargin{3};
-		else
-			h = [];
-		end
-		obj.h([],[],h);
-		obj.fun.phi = @(x,y)  sol.(shape).fun.phi(x,y,u0,Qs,h,ws);
-		obj.fun.u   = @(x,y)  sol.(shape).fun.u(x,y,u0,Qs,h,ws);
-		obj.fun.v   = @(x,y)  sol.(shape).fun.v(x,y,u0,Qs,h,ws);
-		obj.fun.R   = @(x,y)  sol.(shape).fun.R(x,y,u0,Qs,h,ws);
-		obj.fun.J   = @(t,xy) sol.(shape).fun.J(xy(1),xy(2),u0,Qs,h,ws);
-		obj.fun.Jb  = @(t,xy) sol.(shape).fun.Jb(xy(1),xy(2),u0,Qs,h,ws);
+%	case {3,4}
+%		u0 = varargin{1};
+%		Qs = varargin{2};
+%		ws = varargin{2};
+%		if (length(varargin) > 3)
+%			h  = varargin{3};
+%		else
+%			h = [];
+%		end
+%		obj.h([],[],h);
+%		obj.fun.phi = @(x,y)  sol.(shape).fun.phi(x,y,u0,Qs,h,ws);
+%		obj.fun.u   = @(x,y)  sol.(shape).fun.u(x,y,u0,Qs,h,ws);
+%		obj.fun.v   = @(x,y)  sol.(shape).fun.v(x,y,u0,Qs,h,ws);
+%		obj.fun.R   = @(x,y)  sol.(shape).fun.R(x,y,u0,Qs,h,ws);
+%		obj.fun.J   = @(t,xy) sol.(shape).fun.J(xy(1),xy(2),u0,Qs,h,ws);
+%		obj.fun.Jb  = @(t,xy) sol.(shape).fun.Jb(xy(1),xy(2),u0,Qs,h,ws);
 	otherwise
 		error('here');
 	end

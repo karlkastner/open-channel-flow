@@ -2,7 +2,12 @@
 %% transverse profile of the streamwise velocity
 %% c.f. shiono knight
 % momentum equation
-% ignores effect of transversal slope on bed shear stress
+% TODO ignores effect of transversal slope on bed shear stress
+%
+% du/dt = 0, du/dx = 0
+%
+% rho g h S + cd u^2 + 1/2 rho lambda sqrt(f/8) d/dn(h^2 d/dn u) = 0
+%
 function [x, u, u2] = transverse_velocity_profile(C,harg,w,S,lambda,n,bc)
 	if (nargin() < 7 || isempty(bc))
 		bc = 'dirichlet';
@@ -14,6 +19,8 @@ function [x, u, u2] = transverse_velocity_profile(C,harg,w,S,lambda,n,bc)
 		% shono-knight 1991: lambda = 0.07 in channel centre, and larger near the bank
 		% higher with strong secondary flow
 		% 1989: lambda = 0.45 in centre
+		% 1991 : lambda_floodplain ~ l_channel (2 D_r)^-4, D_r = (h_lf-hmc) / h_mc
+		% lambda_a : apparent ~ 10 lambda turb-theory
 		lambda = 0.5;
 	end
 	x = w*((0:n-1)'/(n-1)-0.5);
@@ -27,8 +34,8 @@ function [x, u, u2] = transverse_velocity_profile(C,harg,w,S,lambda,n,bc)
 		end
 	end
 
-	rho = 1000;
-	g = Constant.gravity;
+	rho = Constant.density.water;
+	g   = Constant.gravity;
 
 	%f = sqrt(8*g)/C^2;
 	% c.f. Henderson 1966, 4-8
@@ -45,13 +52,13 @@ function [x, u, u2] = transverse_velocity_profile(C,harg,w,S,lambda,n,bc)
 	Ad = 0.5*rho*lambda*sqrt(1/8*f)*(  diag(sparse(h.^2))*D2 ...
 					 + diag(sparse(D1*h.^2))*D1);
 
-	% pressure
-	Ap = - 1/8*rho*f*I;
+	% friction
+	Af = - 1/8*rho*f*I;
 
-	A = Ad + Ap;
+	A  = Ad + Af;
 	
-	% constant term (rhs)
-	b = -(rho*g*h*S).*ones(n,1);
+	% pressure, constant term (rhs)
+	b  = -(rho*g*h*S).*ones(n,1);
 
 	switch (bc)
 	case {'dirichlet'}
@@ -86,10 +93,10 @@ if (0)
 	fdx = u>mu;
 %	fdx = (x>-w/2+2*h & x<w/2-2*h);
 	Adu2 = Ad*u2;
-	Apu2 = Ap*u2;
-	[norm(Adu2)./norm(b) norm(Apu2)./norm(b)]
+	Afu2 = Af*u2;
+	[norm(Adu2)./norm(b) norm(Afu2)./norm(b)]
 %./norm(b) norm(Ad(:,fdx)*u2(fdx))./norm(b(fdx))]
-	[norm(Adu2(fdx))./norm(b(fdx)) norm(Apu2(fdx))./norm(b(fdx))]
+	[norm(Adu2(fdx))./norm(b(fdx)) norm(Afu2(fdx))./norm(b(fdx))]
 	w
 	clf
 	plot(x,u)
