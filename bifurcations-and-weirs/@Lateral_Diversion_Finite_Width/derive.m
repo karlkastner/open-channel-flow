@@ -121,7 +121,7 @@ function sol = derive(obj,force)
 		Rf     = -streamline_radius_of_curvature( ...
 						    uf,duf_dx,duf_dy, ...
 						    vf,dvf_dx,dvf_dy);
-		[ubf,vbf] = bend_velocity_near_bed(uf,vf,beta/12,Rf);
+		[ubf,vbf] = bend_velocity_near_bed(uf,vf,beta/obj.fs,Rf);
 
 		% near field
 		if (0)

@@ -2,11 +2,16 @@
 %
 %% near-bed-velocity in a meander bend
 function [ubed,vbed,ubmag,vsi] = bend_velocity_near_bed(u,v,h,R)
-	kappa = Constant.Karman;
 	% rozovskii 1.114 (1.5)
 	% vriend 1977 119 (2.0)
 	% kalkwijk 36
-	scale = 2.0/kappa^2*h./R;
+	if (~issym(u))
+		kappa = Constant.Karman;
+		fs = 2/kappa^2;
+	else
+		syms fs
+	end
+	scale = fs*h./R;
 
 	% near bed velocity = offset of secondary flow + mean velocity
 	% Thu 30 Aug 17:19:15 CEST 2018 sign of u and v swapped

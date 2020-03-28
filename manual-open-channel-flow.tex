@@ -16,7 +16,7 @@ breaklines=true
 \setlength{\cftsubsecnumwidth}{3.5em}
 
 \title{Manual for Package:
-open-channel-flow\protect\\Revision 1:7M
+open-channel-flow\protect\\Revision 1:8M
 }
 \author{Karl K\"astner}
 %\date{}
@@ -128,7 +128,7 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\section{@Lateral\_Diversion\_Finite\_Width}
+\section{bifurcations-and-weirs/@Lateral\_Diversion\_Finite\_Width}
 \subsection{Jb}
 ${}$
 \begin{lstlisting}
@@ -200,7 +200,121 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\section{@Lateral\_Diversion\_Wide\_Channel}
+\section{bifurcations-and-weirs/@Lateral\_Diversion\_Finite\_Width\_Gradual}
+\subsection{Jb}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{Lateral\_Diversion\_Finite\_Width\_Gradual}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{coefficients}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{condA}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{dR}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{derive}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{evalk}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{evalk\_}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{lateral\_outflow\_finite\_width1}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{load\_functions}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{bifurcations-and-weirs/@Lateral\_Diversion\_Finite\_Width\_Gradual/old}
+\subsection{coefficients\_old}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{bifurcations-and-weirs/@Lateral\_Diversion\_Finite\_Width\_Gradual}
+\subsection{stagnation\_point}
+${}$
+\begin{lstlisting}
+	fdx    = isnan(x);
+
+\end{lstlisting}
+\subsection{streamline}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{streamline\_radius\_of\_curvature}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{u\_far}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{uv1}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{uv\_side\_branch}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{v\_far}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{velocity}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{velocity\_linear}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{velocity\_near\_bed}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{xp}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{bifurcations-and-weirs/@Lateral\_Diversion\_Wide\_Channel}
 \subsection{Lateral\_Diversion\_Wide\_Channel}
 ${}$
 \begin{lstlisting}
@@ -236,7 +350,7 @@ ${}$
  wide channel
 
 \end{lstlisting}
-\section{@Lateral\_Diversion\_Wide\_Channel\_Map}
+\section{bifurcations-and-weirs/@Lateral\_Diversion\_Wide\_Channel\_Map}
 \subsection{Lateral\_Diversion\_Wide\_Channel\_Map}
 ${}$
 \begin{lstlisting}
@@ -250,7 +364,182 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\section{@Potential\_Flow}
+\section{bifurcations-and-weirs/@Side\_Weir}
+\subsection{Side\_Weir}
+${}$
+\begin{lstlisting}
+ side weir, analytical solution to (critical) lateral outflow
+
+\end{lstlisting}
+\subsection{dzs\_dx}
+${}$
+\begin{lstlisting}
+ side weir, along channel surface gradient
+
+\end{lstlisting}
+\subsection{surface\_elevation}
+${}$
+\begin{lstlisting}
+ along-channel surface elevation for (critical) lateral outflow over a side-weir
+
+\end{lstlisting}
+\section{bifurcations-and-weirs}
+\subsection{Lateral\_Diversion\_Finite\_Width\_Map}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{open-channel-flow}
+\begin{lstlisting}
+functions for open channel flow, sub modules:
+
+@Backwater1D
+	gradually varied flow in 1D (backwater)
+@Potential_Flow
+	depth averaged potential flow, numerical solution
+@Potential_Flow_Analytic
+	depth averaged potential flow, analytical solution
+rating-curve
+	empirical rating curves
+@Side_Weir
+	analytical solution to lateral outflow over a side weir
+@SWE
+	dynamical solution of the shallow water equation (saint-venant-equation)
+	in 1D
+@SWE_2d
+	dynamical solution of the shallow water equation (saint-venant-equation)
+	in 2D
+velocity-profile
+	vertical and transverse velocity profiles of the streamwise velocity
+
+
+\end{lstlisting}
+\subsection{hfilter}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{kinematik-and-diffusion-wave}
+\subsection{diffusion\_wave}
+${}$
+\begin{lstlisting}
+ propagation of a diffusion wave (flood wave), c.f. ponce
+ advection
+ diffusion
+ where is the bed slope?
+ friction slope
+ eddy slope
+ chow 1988
+ d(A+A0)/dt + dQ/dx = q
+ dQ/dt + d/dx betaQ^2/A + gA(dh/dx + Sf + Se) - beta q_i v_i + Wf B = 0
+ A0 ignored
+ inflow and wind shear ignored
+
+\end{lstlisting}
+\subsection{flood\_wave\_diffusion\_coefficient}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{linear\_wave}
+${}$
+\begin{lstlisting}
+ linear wave routing (linearised kinematic wave)
+
+\end{lstlisting}
+\section{meander-bend/@Equilibrium\_Bend}
+\subsection{Equilibrium\_Bend}
+${}$
+\begin{lstlisting}
+ Transverse profile of the bed level and bed material grain size in
+ an equilibrium (infintely long) meander bend
+
+\end{lstlisting}
+\subsection{bed\_profile}
+${}$
+\begin{lstlisting}
+ predict transverse bed profile of an equilibrium meander bend
+
+\end{lstlisting}
+\subsection{bed\_profile\_uniform}
+${}$
+\begin{lstlisting}
+ transverse profile of the bed level of an equilibrium meander bend
+ with uniform grain size
+
+\end{lstlisting}
+\subsection{calibrate}
+${}$
+\begin{lstlisting}
+ calibrate bend geometry to given profile
+
+\end{lstlisting}
+\subsection{dD\_dr}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{dh\_dr}
+${}$
+\begin{lstlisting}
+ across channel derivative of flow depth for a meandering river
+
+\end{lstlisting}
+\subsection{dh\_dr\_uniform}
+${}$
+\begin{lstlisting}
+ transverse gradient of the bed level of an equilibrium meander bend
+ for the case of uniform bed material
+
+\end{lstlisting}
+\subsection{grain\_size\_profile}
+${}$
+\begin{lstlisting}
+ transverse (across channel) profile of the bed material grain size
+ in a river meander
+
+\end{lstlisting}
+\section{meander-bend}
+\subsection{Kinoshita}
+${}$
+\begin{lstlisting}
+% Public properties
+% Public get properties
+% Private properties
+% Constructor
+% Setters and getters
+% generic methods
+
+\end{lstlisting}
+\subsection{bend\_transverse\_velocity}
+${}$
+\begin{lstlisting}
+ transverse velocity profile in a meander bend
+
+\end{lstlisting}
+\subsection{bend\_velocity\_near\_bed}
+${}$
+\begin{lstlisting}
+ near-bed-velocity in a meander bend
+
+\end{lstlisting}
+\subsection{kinoshita\_}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{random\_meander}
+${}$
+\begin{lstlisting}
+ generate a pseudo random meander
+
+\end{lstlisting}
+\subsection{test\_rozovskii}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{potential-flow/@Potential\_Flow}
 \subsection{Potential\_Flow}
 ${}$
 \begin{lstlisting}
@@ -423,7 +712,7 @@ ${}$
  determine the vertical velocity from continuity
 
 \end{lstlisting}
-\section{@Potential\_Flow\_Analytic}
+\section{potential-flow/@Potential\_Flow\_Analytic}
 \subsection{Potential\_Flow\_Analytic}
 ${}$
 \begin{lstlisting}
@@ -437,7 +726,112 @@ ${}$
  numerically follow path along streamline by integrating the velocity
 
 \end{lstlisting}
-\section{@SWE}
+\section{rating-curve}
+\subsection{ChezyRatingCurve}
+${}$
+\begin{lstlisting}
+ rating curve, Chezy formalism
+
+\end{lstlisting}
+\subsection{DynamicKeuleganRC}
+${}$
+\begin{lstlisting}
+ Dynamic Rating Curve, Keulegan roughness formulation
+ (dynamic = correction for hysteresis loop)
+
+\end{lstlisting}
+\subsection{DynamicManningRC}
+${}$
+\begin{lstlisting}
+ Dynamic Rating Curve, Manning roughness formulation
+ (dynamic = correction for hysteresis loop)
+
+\end{lstlisting}
+\subsection{DynamicPowerRC}
+${}$
+\begin{lstlisting}
+ Dynamic Power Law Rating curve
+ (dynamic = correction for hysteresis loop)
+
+\end{lstlisting}
+\subsection{KeuleganRatingCurve}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{ManningRatingCurve}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{PolyRatingCurve}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{PowerRatingCurve}
+${}$
+\begin{lstlisting}
+ stationary rating curve, power law
+
+\end{lstlisting}
+\subsection{PowerRatingCurveOffset}
+${}$
+\begin{lstlisting}
+ stationary rating curve, stage-discharge follows power law
+
+\end{lstlisting}
+\subsection{RatingCurve}
+${}$
+\begin{lstlisting}
+ Fri Feb 13 10:02:52 CET 2015
+ rating curve superclass
+
+\end{lstlisting}
+\subsection{csarea}
+${}$
+\begin{lstlisting}
+ predict cross sectional area from transverse bed level profile
+ and surface elevation
+
+\end{lstlisting}
+\subsection{csdischarge}
+${}$
+\begin{lstlisting}
+ compute discharge
+
+\end{lstlisting}
+\subsection{csperimeter}
+${}$
+\begin{lstlisting}
+ compute wetted perimeter
+
+\end{lstlisting}
+\subsection{csradius}
+${}$
+\begin{lstlisting}
+ compute hydraulic radius of the cross section
+
+\end{lstlisting}
+\subsection{cswidth}
+${}$
+\begin{lstlisting}
+ determine cross section width
+
+
+\end{lstlisting}
+\subsection{test\_PowerRatingCurve}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{wfunc}
+${}$
+\begin{lstlisting}
+ determine channel width
+
+\end{lstlisting}
+\section{shallow-water/@SWE}
 \subsection{SWE}
 ${}$
 \begin{lstlisting}
@@ -613,7 +1007,7 @@ ${}$
  predefined functions of channel geometries
 
 \end{lstlisting}
-\section{@SWE\_2d}
+\section{shallow-water/@SWE\_2d}
 \subsection{SWE\_2d}
 ${}$
 \begin{lstlisting}
@@ -639,347 +1033,7 @@ ${}$
  solve SWE for statinary flow (dU/dt = dQ/dt = 0)
 
 \end{lstlisting}
-\section{@Side\_Weir}
-\subsection{Side\_Weir}
-${}$
-\begin{lstlisting}
- side weir, analytical solution to (critical) lateral outflow
-
-\end{lstlisting}
-\subsection{dzs\_dx}
-${}$
-\begin{lstlisting}
- side weir, along channel surface gradient
-
-\end{lstlisting}
-\subsection{surface\_elevation}
-${}$
-\begin{lstlisting}
- along-channel surface elevation for (critical) lateral outflow over a side-weir
-
-\end{lstlisting}
-\section{open-channel-flow}
-\begin{lstlisting}
-functions for open channel flow, sub modules:
-
-@Backwater1D
-	gradually varied flow in 1D (backwater)
-@Potential_Flow
-	depth averaged potential flow, numerical solution
-@Potential_Flow_Analytic
-	depth averaged potential flow, analytical solution
-rating-curve
-	empirical rating curves
-@Side_Weir
-	analytical solution to lateral outflow over a side weir
-@SWE
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 1D
-@SWE_2d
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 2D
-velocity-profile
-	vertical and transverse velocity profiles of the streamwise velocity
-
-
-\end{lstlisting}
-\subsection{Lateral\_Diversion\_Finite\_Width\_Map}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{chezy2manning}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{chezy2z0}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{diffusion\_wave}
-${}$
-\begin{lstlisting}
- propagation of a diffusion wave (flood wave), c.f. ponce
- advection
- diffusion
- where is the bed slope?
- friction slope
- eddy slope
- chow 1988
- d(A+A0)/dt + dQ/dx = q
- dQ/dt + d/dx betaQ^2/A + gA(dh/dx + Sf + Se) - beta q_i v_i + Wf B = 0
- A0 ignored
- inflow and wind shear ignored
-
-\end{lstlisting}
-\subsection{friction\_slope}
-${}$
-\begin{lstlisting}
- friction slope (surface slope) for uniform stationary flow
-
-\end{lstlisting}
-\subsection{linear\_wave}
-${}$
-\begin{lstlisting}
- linear wave routing (linearised kinematic wave)
-
-\end{lstlisting}
-\subsection{manning2chezy}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{manning2drag}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{manning2z0}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\section{meander-bend/@Equilibrium\_Bend}
-\subsection{Equilibrium\_Bend}
-${}$
-\begin{lstlisting}
- Transverse profile of the bed level and bed material grain size in
- an equilibrium (infintely long) meander bend
-
-\end{lstlisting}
-\subsection{bed\_profile}
-${}$
-\begin{lstlisting}
- predict transverse bed profile of an equilibrium meander bend
-
-\end{lstlisting}
-\subsection{bed\_profile\_uniform}
-${}$
-\begin{lstlisting}
- transverse profile of the bed level of an equilibrium meander bend
- with uniform grain size
-
-\end{lstlisting}
-\subsection{calibrate}
-${}$
-\begin{lstlisting}
- calibrate bend geometry to given profile
-
-\end{lstlisting}
-\subsection{dD\_dr}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{dh\_dr}
-${}$
-\begin{lstlisting}
- across channel derivative of flow depth for a meandering river
-
-\end{lstlisting}
-\subsection{dh\_dr\_uniform}
-${}$
-\begin{lstlisting}
- transverse gradient of the bed level of an equilibrium meander bend
- for the case of uniform bed material
-
-\end{lstlisting}
-\subsection{grain\_size\_profile}
-${}$
-\begin{lstlisting}
- transverse (across channel) profile of the bed material grain size
- in a river meander
-
-\end{lstlisting}
-\section{meander-bend}
-\subsection{Kinoshita}
-${}$
-\begin{lstlisting}
-% Public properties
-% Public get properties
-% Private properties
-% Constructor
-% Setters and getters
-% generic methods
-
-\end{lstlisting}
-\subsection{bend\_transverse\_velocity}
-${}$
-\begin{lstlisting}
- transverse velocity profile in a meander bend
-
-\end{lstlisting}
-\subsection{bend\_velocity\_near\_bed}
-${}$
-\begin{lstlisting}
- near-bed-velocity in a meander bend
-
-\end{lstlisting}
-\subsection{kinoshita\_}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{random\_meander}
-${}$
-\begin{lstlisting}
- generate a pseudo random meander
-
-\end{lstlisting}
-\subsection{test\_rozovskii}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\section{old}
-\subsection{UniformFlow}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\section{rating-curve}
-\subsection{ChezyRatingCurve}
-${}$
-\begin{lstlisting}
- rating curve, Chezy formalism
-
-\end{lstlisting}
-\subsection{DynamicKeuleganRC}
-${}$
-\begin{lstlisting}
- Dynamic Rating Curve, Keulegan roughness formulation
- (dynamic = correction for hysteresis loop)
-
-\end{lstlisting}
-\subsection{DynamicManningRC}
-${}$
-\begin{lstlisting}
- Dynamic Rating Curve, Manning roughness formulation
- (dynamic = correction for hysteresis loop)
-
-\end{lstlisting}
-\subsection{DynamicPowerRC}
-${}$
-\begin{lstlisting}
- Dynamic Power Law Rating curve
- (dynamic = correction for hysteresis loop)
-
-\end{lstlisting}
-\subsection{KeuleganRatingCurve}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{ManningRatingCurve}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{PolyRatingCurve}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{PowerRatingCurve}
-${}$
-\begin{lstlisting}
- stationary rating curve, power law
-
-\end{lstlisting}
-\subsection{PowerRatingCurveOffset}
-${}$
-\begin{lstlisting}
- stationary rating curve, stage-discharge follows power law
-
-\end{lstlisting}
-\subsection{RatingCurve}
-${}$
-\begin{lstlisting}
- Fri Feb 13 10:02:52 CET 2015
- rating curve superclass
-
-\end{lstlisting}
-\subsection{csarea}
-${}$
-\begin{lstlisting}
- predict cross sectional area from transverse bed level profile
- and surface elevation
-
-\end{lstlisting}
-\subsection{csdischarge}
-${}$
-\begin{lstlisting}
- compute discharge
-
-\end{lstlisting}
-\subsection{csperimeter}
-${}$
-\begin{lstlisting}
- compute wetted perimeter
-
-\end{lstlisting}
-\subsection{csradius}
-${}$
-\begin{lstlisting}
- compute hydraulic radius of the cross section
-
-\end{lstlisting}
-\subsection{cswidth}
-${}$
-\begin{lstlisting}
- determine cross section width
-
-
-\end{lstlisting}
-\subsection{test\_PowerRatingCurve}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{wfunc}
-${}$
-\begin{lstlisting}
- determine channel width
-
-\end{lstlisting}
-\section{open-channel-flow}
-\begin{lstlisting}
-functions for open channel flow, sub modules:
-
-@Backwater1D
-	gradually varied flow in 1D (backwater)
-@Potential_Flow
-	depth averaged potential flow, numerical solution
-@Potential_Flow_Analytic
-	depth averaged potential flow, analytical solution
-rating-curve
-	empirical rating curves
-@Side_Weir
-	analytical solution to lateral outflow over a side weir
-@SWE
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 1D
-@SWE_2d
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 2D
-velocity-profile
-	vertical and transverse velocity profiles of the streamwise velocity
-
-
-\end{lstlisting}
-\subsection{shear\_velocity}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{surface\_slope}
-${}$
-\begin{lstlisting}
- surface slope for uniform stationary flow
-
-\end{lstlisting}
+\section{shallow-water}
 \subsection{sw\_reflection}
 ${}$
 \begin{lstlisting}
@@ -1002,31 +1056,7 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\section{open-channel-flow}
-\begin{lstlisting}
-functions for open channel flow, sub modules:
-
-@Backwater1D
-	gradually varied flow in 1D (backwater)
-@Potential_Flow
-	depth averaged potential flow, numerical solution
-@Potential_Flow_Analytic
-	depth averaged potential flow, analytical solution
-rating-curve
-	empirical rating curves
-@Side_Weir
-	analytical solution to lateral outflow over a side weir
-@SWE
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 1D
-@SWE_2d
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 2D
-velocity-profile
-	vertical and transverse velocity profiles of the streamwise velocity
-
-
-\end{lstlisting}
+\section{test}
 \subsection{test\_inverse\_backwater\_curve}
 ${}$
 \begin{lstlisting}
@@ -1048,6 +1078,21 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{chezy2f}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{chezy2manning}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{chezy2z0}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{critical\_flow\_depth}
 ${}$
 \begin{lstlisting}
@@ -1060,6 +1105,31 @@ ${}$
  convert drag coefficient to chezy coefficient
  g dz_s/dx + cd w u^2/h   = 0 (swe formalism)
       - S  +  1/C^2 U^2/H = 0 (chezy formalism)
+
+\end{lstlisting}
+\subsection{f2chezy}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{ks2z0}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{manning2chezy}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{manning2drag}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{manning2z0}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{normal\_flow\_depth}
@@ -1084,6 +1154,7 @@ ${}$
 \subsection{normal\_flow\_slope}
 ${}$
 \begin{lstlisting}
+ energy slope (surface slope) for uniform stationary flow
  normal flow slope in uniform stationary flow
 
 \end{lstlisting}
@@ -1094,6 +1165,26 @@ ${}$
 
 \end{lstlisting}
 \subsection{normal\_shear\_velocity}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{shear\_velocity}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{z02chezy}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{z02ks}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{z0tochezy}
 ${}$
 \begin{lstlisting}
 
@@ -1532,36 +1623,6 @@ ${}$
 
 \end{lstlisting}
 \subsection{stage2discharge}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\section{open-channel-flow}
-\begin{lstlisting}
-functions for open channel flow, sub modules:
-
-@Backwater1D
-	gradually varied flow in 1D (backwater)
-@Potential_Flow
-	depth averaged potential flow, numerical solution
-@Potential_Flow_Analytic
-	depth averaged potential flow, analytical solution
-rating-curve
-	empirical rating curves
-@Side_Weir
-	analytical solution to lateral outflow over a side weir
-@SWE
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 1D
-@SWE_2d
-	dynamical solution of the shallow water equation (saint-venant-equation)
-	in 2D
-velocity-profile
-	vertical and transverse velocity profiles of the streamwise velocity
-
-
-\end{lstlisting}
-\subsection{z0tochezy}
 ${}$
 \begin{lstlisting}
 

@@ -40,6 +40,8 @@ function [t,xy,pf,f,h] = streamline(obj,shape,alpha,beta)
 		ylim_ = [-inf,inf]; %-sqrt(eps)*ws];
 		opt = odeset(...
 		        'event', @(t,xy) boxevent(t,xy,xlim_,ylim_));
+		opt.RelTol = 1e-3;
+%obj.RelTol;
 
 		[t,xy]    = pf.streamline([0,-T],[x0,y0],ufield,vfield,opt);
 		%[t,xy]    = pf.streamline([0,-T],[(1-e)*x0,y0],ufield,vfield,opt);

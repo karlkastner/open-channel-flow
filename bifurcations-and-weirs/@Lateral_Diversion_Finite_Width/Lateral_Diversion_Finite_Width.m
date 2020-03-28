@@ -131,7 +131,7 @@ classdef Lateral_Diversion_Finite_Width < Lateral_Diversion_Wide_Channel
 			v        = obj.v(x,y);
 			R        = obj.R(x,y,u,v);
 			% note that this is indeed beta, not h in the relation
-			[ub,vb]  = bend_velocity_near_bed(u,v,obj.beta,R);
+			[ub,vb]  = bend_velocity_near_bed(u,v,obj.beta/obj.fs,R);
 			if (0)
 			uf       = obj.u_far(x,y);
 			ubf      = obj.ubf(x,y);
@@ -147,14 +147,14 @@ classdef Lateral_Diversion_Finite_Width < Lateral_Diversion_Wide_Channel
 			u = obj.u(x,y);
 			v = obj.v(x,y);
 			R = obj.R(x,y,u,v);
-			[ub,vb] = bend_velocity_near_bed(u,v,obj.beta,R);
+			[ub,vb] = bend_velocity_near_bed(u,v,obj.beta/obj.fs,R);
 		end
 
 		function vb = vbed(obj,x,y)
 			u = obj.u(x,y);
 			v = obj.v(x,y);
 			R = obj.R(x,y,u,v);
-			[ub,vb] = bend_velocity_near_bed(u,v,obj.beta,R);
+			[ub,vb] = bend_velocity_near_bed(u,v,obj.beta/obj.fs,R);
 		end
 
 		function ubf = ubf(obj,x,y)

@@ -1,6 +1,6 @@
 % Thu 16 Jan 20:06:07 +08 2020
 function [u,v] = velocity(obj,x,y)
-	[u,v] = lateral_outflow_finite_width_(x,y,obj.alpha,obj.gamma,obj.n);
+	%[u,v] = lateral_outflow_finite_width_(x,y,obj.alpha,obj.gamma,obj.n);
 
 	u0 = obj.u0;
 
