@@ -8,11 +8,11 @@
 %
 % rho g h S + cd u^2 + 1/2 rho lambda sqrt(f/8) d/dn(h^2 d/dn u) = 0
 %
-function [x, u, u2] = transverse_velocity_profile(C,harg,w,S,lambda,n,bc)
-	if (nargin() < 7 || isempty(bc))
+function [x, u, u2] = transverse_velocity_profile(C,harg,w,S,lambda,Q,n,bc)
+	if (nargin() < 8 || isempty(bc))
 		bc = 'dirichlet';
 	end
-	if (nargin() < 6 || isempty(n))
+	if (nargin() < 7 || isempty(n))
 		n = 100;
 	end
 	if (nargin() < 5 || isempty(lambda))
@@ -23,6 +23,10 @@ function [x, u, u2] = transverse_velocity_profile(C,harg,w,S,lambda,n,bc)
 		% lambda_a : apparent ~ 10 lambda turb-theory
 		lambda = 0.5;
 	end
+	if (nargin()<6)
+		Q = [];
+	end
+
 	x = w*((0:n-1)'/(n-1)-0.5);
 	if (isa(harg,'function_handle'))
 		h = harg(x);
@@ -84,8 +88,10 @@ function [x, u, u2] = transverse_velocity_profile(C,harg,w,S,lambda,n,bc)
 	u  = sqrt(u2);
 
 	% scale to full discharge
-	Q = mean(normal_flow_discharge(h,w,C,S));
-	u = u*Q/(w*sum(mid(h.*u))/(n-1));
+	% Q = mean(normal_flow_discharge(h,w,C,S));
+	if (~isempty(Q))
+		u = u*Q/(w*sum(mid(h.*u))/(n-1));
+	end
 
 if (0)
 	% inner region

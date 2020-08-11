@@ -15,12 +15,12 @@ classdef Lateral_Diversion_Finite_Width < Lateral_Diversion_Wide_Channel
 %		ws = 1;
 %	end
 	methods (Static)
-		f = derive();
+		f = derive(oname);
 	end
 	methods
 		function obj = Lateral_Diversion_Finite_Width(varargin)
 			obj = obj@Lateral_Diversion_Wide_Channel();
-			obj.funfilename     = 'functions.mat';
+			obj.funfilename     = 'ldfw-functions.mat';
 			for idx=1:2:length(varargin)
 				field       = varargin{idx};
 				obj.(field) = varargin{idx+1};
@@ -129,7 +129,7 @@ classdef Lateral_Diversion_Finite_Width < Lateral_Diversion_Wide_Channel
 		function [ub,vb] = uvb(obj,x,y)
 			u        = obj.u(x,y);
 			v        = obj.v(x,y);
-			R        = obj.R(x,y,u,v);
+			R        = obj.streamline_radius_of_curvature(x,y,u,v);
 			% note that this is indeed beta, not h in the relation
 			[ub,vb]  = bend_velocity_near_bed(u,v,obj.beta/obj.fs,R);
 			if (0)
@@ -146,14 +146,14 @@ classdef Lateral_Diversion_Finite_Width < Lateral_Diversion_Wide_Channel
 		function ub = ubed(obj,x,y)
 			u = obj.u(x,y);
 			v = obj.v(x,y);
-			R = obj.R(x,y,u,v);
+			R = obj.streamline_radius_of_curvature(x,y,u,v);
 			[ub,vb] = bend_velocity_near_bed(u,v,obj.beta/obj.fs,R);
 		end
 
 		function vb = vbed(obj,x,y)
 			u = obj.u(x,y);
 			v = obj.v(x,y);
-			R = obj.R(x,y,u,v);
+			R = obj.streamline_radius_of_curvature(x,y,u,v);
 			[ub,vb] = bend_velocity_near_bed(u,v,obj.beta/obj.fs,R);
 		end
 
@@ -165,27 +165,6 @@ classdef Lateral_Diversion_Finite_Width < Lateral_Diversion_Wide_Channel
 			vbf = obj.fun.vbf(x,y,obj.alpha,obj.beta,obj.gamma);
 		end
 
-		function R = R(obj,x,y,u,v,du_dx,du_dy,dv_dx,dv_dy)
-			if (nargin()<6)
-			if (nargin()<4)
-				u = obj.u(x,y);
-				v = obj.v(x,y);
-			end
-			%J = obj.J(x,y);
-			%du_dx = J(1,1);
-			%du_dy = J(1,2);
-			%dv_dx = J(2,1);
-			%dv_dy = J(2,2);
-			du_dx = obj.du_dx(x,y);
-			du_dy = obj.du_dy(x,y);
-			dv_dx = obj.dv_dx(x,y);
-			dv_dy = obj.dv_dy(x,y);
-			end
-			R = -streamline_radius_of_curvature( ...
-						    u,du_dx,du_dy, ...
-						    v,dv_dx,dv_dy);
-			% R = obj.evalk('R',x,y);
-		end
 		function J = J(obj,x,y)
 			%J = obj.evalk('J',x,y);
 			du_dx = obj.du_dx(x,y);

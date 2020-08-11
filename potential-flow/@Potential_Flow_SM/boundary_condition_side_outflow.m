@@ -2,6 +2,7 @@
 %% apply boundary conditions for side outflow
 %% p*phi + (1-p)*d/db phi = rhs
 %% y : along channel coordinate
+%% TODO, make this return the bc-struct
 function [p,rhs] = boundary_condition_side_outflow(obj,x,y,h,id,xlim,ylim,yc,ws,u0,qside,shapeflag)
 	p   = zeros(size(x));
 	rhs = zeros(size(x));

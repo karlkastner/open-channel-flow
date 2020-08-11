@@ -15,6 +15,9 @@ classdef Lateral_Diversion_Wide_Channel < Potential_Flow_Analytic
 
 		% scale of flow velocity
 		uin
+
+		shape = 'const';
+		funfilename  = 'ldwc-functions.mat';
 	end % properties
 	
 	methods

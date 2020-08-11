@@ -2,7 +2,9 @@
 %% apply boundary conditions
 %% p*phi + (1-p)*d/db phi = rhs
 %%
-function [p,rhs] = boundary_condition(x,y,h,id,Lx,Ly,wsb,qin,qout,qside)
+%% TODO, make this return the bc-struct
+%%
+function [p,rhs] = boundary_condition_side_outflow(x,y,h,id,Lx,Ly,wsb,qin,qout,qside)
 	p   = zeros(size(x));
 	rhs = zeros(size(x));
 	h   = h(id);

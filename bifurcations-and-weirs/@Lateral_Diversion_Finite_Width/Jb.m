@@ -8,7 +8,7 @@ function Jb   = Jb(obj,x,y)
 	dv_dx = obj.dv_dx(x,y);
 	dv_dy = obj.dv_dy(x,y);
 
-	R     = obj.R(x,y,u,v,du_dx,du_dy,dv_dx,dv_dy);
+	R     = obj.streamline_radius_of_curvature(x,y,u,v,du_dx,du_dy,dv_dx,dv_dy);
 
 	[dR_dx,dR_dy]    = obj.dR(x,y,u,v,du_dx,du_dy,dv_dx,dv_dy);
 

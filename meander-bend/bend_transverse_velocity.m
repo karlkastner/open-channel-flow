@@ -1,6 +1,6 @@
 % Fri 18 May 14:02:51 CEST 2018
 % ikeda, 1976
-%% transverse velocity profile in a meander bend
+%% transverse profile of the streamwise velocity in a meander bend
 %
 % u    : depth averaged velocity
 % baru : depth averaged velocity at the centreline

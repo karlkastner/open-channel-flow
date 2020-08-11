@@ -1,5 +1,7 @@
 % Wed 14 Mar 10:15:13 CET 2018
 %% compute surface elevation according to Bernoulli's law
+%% note : this is likely very different from the true surface elevation,
+%%        as streamline curvature causes a transverse pressure gradient
 function zs = potential_surface_elevation(obj,idir,varargin)
 	g = obj.g;
 if (1)

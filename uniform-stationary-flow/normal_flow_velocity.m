@@ -8,11 +8,6 @@ function U = normal_flow_velocity(Q,W,C,S,ismanning)
 		ismanning = [];
 	end
 	H = normal_flow_depth(Q,W,C,S,ismanning);
-	U = Q./(H*W);
-%	if (nargin()>4)
-%		n = C;
-%		C = manning2chezy(n,H);
-%	end
-%	U = C.*sqrt(H.*S);
+	U = Q./(H.*W);
 end
 

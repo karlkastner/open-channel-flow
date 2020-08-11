@@ -1,6 +1,6 @@
 % Fri 24 Jan 18:32:21 +08 2020
 function [t,xy] = streamline(obj,T,xy0,field,opt)
-	if (nargin()<4)
+	if (nargin()<5)
 		opt=odeset();
 	end
 	if (isempty(field))

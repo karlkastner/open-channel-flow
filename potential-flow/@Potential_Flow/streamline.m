@@ -2,7 +2,8 @@
 % Wed 14 Mar 16:06:34 CET 2018
 %% compute a streamline
 % near bed streamlines
-function [t, xy] = streamline(obj, T, xy0, ufield, vfield, opt)
+% function [t, xy] = streamline(obj, T, xy0, ufield, vfield, opt)
+function [t, xy] = streamline(obj, T, xy0, ufield, vfield)
 	if (nargin() < 6)
 		% TODO choose on grid-size
 		opt = struct();
@@ -28,15 +29,10 @@ function [t, xy] = streamline(obj, T, xy0, ufield, vfield, opt)
 %	if (nargin()>5)
 %		opt=odeset(opt,'Events', stopevent);
 %	end
-	% TODO, no magic numbers
-	if (isempty(opt.RelTol))
-		opt = odeset(opt,'RelTol',1e-2);
-	end
-	if (isfield(opt,'solver'))
-		solver = opt.solver;
-	else
-		solver = @ode23s;
-	end
+% TODO, no magic numbers
+
+	solver = obj.streamlineopt.solver;
+
 	% TODO, nasty fix
 	global xystop
 	xystop = xy0;
@@ -50,7 +46,7 @@ function [t, xy] = streamline(obj, T, xy0, ufield, vfield, opt)
 		%solver = @ode45;
 		[t_,xy_] = solver(@(t,xy) [obj.(ufield)(xy(1),xy(2));
 					   obj.(vfield)(xy(1),xy(2))], ...
-                                           T, xy0, opt);
+                                           T, xy0, obj.streamlineopt);
 		%[t_,xy_] = ode23s(@(t,xy) phidot(xy), T, xy0,opt);
 		t  = [t; NaN; t_];
 		xy = [xy; NaN(1,2); xy_];

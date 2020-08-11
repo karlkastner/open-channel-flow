@@ -11,6 +11,8 @@
 % dy/dx = 1./(1-F^2)*(S0 - S_f  - 2*beta*Q/(g*A^2)*I - Q^2/(g*A^2)*dbeta_dx)
 % TODO h0 should better be z0 and zb
 % TODO lateral inflow I = 0
+% function [x, h, zs, dh_dx, dzs_dx] = solve(obj,Q0,Qt,chezy,width,zb,z0_downstream,X)
+%
 function [x, h, zs, dh_dx, dzs_dx] = solve(obj,Q0,Qt,chezy,width,zb,z0_downstream,X)
 	obj.X  = X;
 	obj.Q0 = Q0;

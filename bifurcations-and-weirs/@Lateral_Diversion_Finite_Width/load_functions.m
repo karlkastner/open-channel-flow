@@ -1,6 +1,24 @@
 % Mon 20 Jan 11:35:02 +08 2020
-function fun = load_functions(obj)
-	sol = obj.derive();
+function [fun,obj] = load_functions(obj)
+
+	if (~isdeployed())
+		what_   = what(class(obj));
+		path_   = what_.path;
+	else
+		path_   = obj.deploypath;
+	end
+	path_ = [path_,filesep(),obj.funfilename];
+	
+	root  = 'webapps/output';
+	fid = fopen([root,filesep(),'path.csv'],'w');
+	fprintf(fid,'%s\n',path_);
+	fclose(fid);
+
+	if (exist(path_,'file'))
+		load(path_,'sol');
+	else
+		sol = obj.derive(path_);
+	end
 
 % todo the load from file should be here, derive should not save, or?
 
@@ -18,5 +36,5 @@ function fun = load_functions(obj)
 %	obj.fun.J   = @(t,xy) sol.(shape).nfun.J(xy(1),xy(2),alpha,beta);
 %	obj.fun.Jb  = @(t,xy) sol.(shape).nfun.Jb(xy(1),xy(2),alpha,beta);
 %	obj.fun.y0  = @(x,y,alpha,beta)  sol.(shape).nfun.y0([],[],alpha,[]);
-end
+end % load_functions
 

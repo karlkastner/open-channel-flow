@@ -1,18 +1,8 @@
 % Mon 20 Jan 11:23:39 +08 2020
-function sol = derive(obj,force)
-	if (nargin()<1)
-		force = 0;
-	end
+function [sol] = derive(oname)
 
-	syms a b g n x y k real
-	obj2  = Lateral_Diversion_Finite_Width('alpha',a,'beta',b,'gamma',g,'n',n);
-	w     = what(class(obj2));
-	name  = obj2.funfilename;
-	path_ = [w.path,filesep(),name];
-	
-	if (~force && exist(path_,'file'))
-		load(path_,'sol');
-	else
+		syms a b g n x y k real
+		obj2  = Lateral_Diversion_Finite_Width('alpha',a,'beta',b,'gamma',g,'n',n);
 	
 		[u,v]         = obj2.velocity(x,y);
 		sol.sym.u = u;
@@ -165,8 +155,9 @@ function sol = derive(obj,force)
 		% syms x y(x) y0 a tol; syms a positive; y=dsolve(diff(y,x) - a*y/(pi*x^2-a*x),y(-inf)==y0,x), x0=solve((y-y0) - y*tol, x), series(x0,tol,0,'order',2) 
 		% double(subs(subs(subs(y,y0,1),a,1),x,-100))
 		end
-	
-		save(path_,'sol');
-	end
-end
+
+		if (nargin()>0 && ~isempty(oname))	
+			save(oname,'sol');
+		end
+end % function load functions
 

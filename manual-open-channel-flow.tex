@@ -16,7 +16,7 @@ breaklines=true
 \setlength{\cftsubsecnumwidth}{3.5em}
 
 \title{Manual for Package:
-open-channel-flow\protect\\Revision 1:8M
+open-channel-flow\protect\\Revision 1:9M
 }
 \author{Karl K\"astner}
 %\date{}
@@ -128,6 +128,93 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\section{@Compound\_Cross\_Section}
+\subsection{Compound\_Cross\_Section}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{area}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{discharge}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{roughness}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\section{@Cross\_Section}
+\subsection{Cross\_Section}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{average\_across\_section}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{compute\_discharge}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{compute\_sediment\_transport}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{expand}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{fit\_bed\_level}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{flat}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{grain\_size}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{init}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{invalidate}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{parse\_arguments}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{wetted\_cross\_section}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{wetted\_width}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \section{bifurcations-and-weirs/@Lateral\_Diversion\_Finite\_Width}
 \subsection{Jb}
 ${}$
@@ -171,11 +258,6 @@ ${}$
 
 \end{lstlisting}
 \subsection{streamline}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{streamline\_radius\_of\_curvature}
 ${}$
 \begin{lstlisting}
 
@@ -335,19 +417,21 @@ ${}$
 
 
 \end{lstlisting}
-\subsection{lateral\_outflow}
+\subsection{load\_functions}
 ${}$
 \begin{lstlisting}
- potential flow solution to the case of lateral outflow from an infinitely
- wide channel
+ load analytical solutions for potential flow field at a lateral diversion
+ with an infinitely wide main channel
 
 \end{lstlisting}
-\subsection{lateral\_outflow\_finite\_width}
+\subsection{stagnation\_point}
 ${}$
 \begin{lstlisting}
 
- analytical potential flow solution to lateral outflow from an infinitely
- wide channel
+\end{lstlisting}
+\subsection{streamline\_radius\_of\_curvature}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \section{bifurcations-and-weirs/@Lateral\_Diversion\_Wide\_Channel\_Map}
@@ -389,6 +473,42 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\section{bifurcations-and-weirs/bifurcation-empirical}
+\subsection{bifurcation\_potential\_flow\_dividing\_streamline\_radius}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_division\_herrero}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_division\_meijer\_ksiazek\_1}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_division\_meijer\_ksiazek\_2}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_division\_raudkivi}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_division\_van\_der\_mark}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_division\_wang}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \section{open-channel-flow}
 \begin{lstlisting}
 functions for open channel flow, sub modules:
@@ -412,6 +532,21 @@ rating-curve
 velocity-profile
 	vertical and transverse velocity profiles of the streamwise velocity
 
+
+\end{lstlisting}
+\subsection{boundary\_layer\_height}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{discharge2stage}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{eddy\_viscosity\_depth\_averaged}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{hfilter}
@@ -514,7 +649,7 @@ ${}$
 \subsection{bend\_transverse\_velocity}
 ${}$
 \begin{lstlisting}
- transverse velocity profile in a meander bend
+ transverse profile of the streamwise velocity in a meander bend
 
 \end{lstlisting}
 \subsection{bend\_velocity\_near\_bed}
@@ -534,6 +669,11 @@ ${}$
  generate a pseudo random meander
 
 \end{lstlisting}
+\subsection{secondary\_velocity\_profile\_ikeda}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{test\_rozovskii}
 ${}$
 \begin{lstlisting}
@@ -543,69 +683,16 @@ ${}$
 \subsection{Potential\_Flow}
 ${}$
 \begin{lstlisting}
- numerical solution of the potential flow on a curvilinear grid
- (not necessarilly curvilinear)
-
-\end{lstlisting}
-\subsection{apply\_boundary\_potential\_old}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{assemble\_discretization\_matrix\_rectilinear}
-${}$
-\begin{lstlisting}
- assemble the discretisation matrix
-
-\end{lstlisting}
-\subsection{assemble\_potential\_matrix}
-${}$
-\begin{lstlisting}
- assemble the discretisation matrix for potential flow
-
-\end{lstlisting}
-\subsection{bc\_dirichlet}
-${}$
-\begin{lstlisting}
- apply Dirichlet boundary conditions
-
-\end{lstlisting}
-\subsection{boundary\_condition\_side\_outflow}
-${}$
-\begin{lstlisting}
- apply boundary conditions for side outflow
- p*phi + (1-p)*d/db phi = rhs
- y : along channel coordinate
-
-\end{lstlisting}
-\subsection{boundary\_condition\_side\_outflow\_1}
-${}$
-\begin{lstlisting}
- apply boundary conditions
- p*phi + (1-p)*d/db phi = rhs
-
+ numerical potential flow solver by various methods
+ analytic (series)
+ or FDM on non-orthogonal curvilinear grids
+ or FEM by unstructured meshes
 
 \end{lstlisting}
 \subsection{contour}
 ${}$
 \begin{lstlisting}
  contour plot of the potential flow solution
-
-\end{lstlisting}
-\subsection{cut\_boundary}
-${}$
-\begin{lstlisting}
- cut the boundary from the domain
- wa : width of inlet to side channel
- wb : width of side channel
-
-\end{lstlisting}
-\subsection{cut\_rectangle}
-${}$
-\begin{lstlisting}
- cut a rectangle from the domain
- TODO, this requires also an adaptation of the derivative matrices
-       -> step over to semi-unstructured mesh
 
 \end{lstlisting}
 \subsection{infer\_bed\_level}
@@ -654,11 +741,6 @@ ${}$
  objective function for determining the bed level
 
 \end{lstlisting}
-\subsection{old}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
 \subsection{plot}
 ${}$
 \begin{lstlisting}
@@ -679,7 +761,7 @@ ${}$
 \subsection{solve\_potential}
 ${}$
 \begin{lstlisting}
- solve for the flow potential
+ solve for the potential
 
 \end{lstlisting}
 \subsection{streamline}
@@ -692,9 +774,11 @@ ${}$
 ${}$
 \begin{lstlisting}
  compute surface elevation according to Bernoulli's law
+ note : this is likely very different from the true surface elevation,
+        as streamline curvature causes a transverse pressure gradient
 
 \end{lstlisting}
-\subsection{test}
+\subsection{test\_case}
 ${}$
 \begin{lstlisting}
 
@@ -709,7 +793,7 @@ ${}$
 \subsection{vertical\_velocity}
 ${}$
 \begin{lstlisting}
- determine the vertical velocity from continuity
+ determine the vertical velocity by continuity
 
 \end{lstlisting}
 \section{potential-flow/@Potential\_Flow\_Analytic}
@@ -724,6 +808,74 @@ ${}$
 ${}$
 \begin{lstlisting}
  numerically follow path along streamline by integrating the velocity
+
+\end{lstlisting}
+\section{potential-flow/@Potential\_Flow\_SM}
+\subsection{Potential\_Flow\_SM}
+${}$
+\begin{lstlisting}
+ numerical solver for flow on a curvilinear grid (not necessarilly orthogonal)
+ by means of the Finite Difference Method
+
+\end{lstlisting}
+\subsection{assemble\_discretization\_matrix\_rectilinear}
+${}$
+\begin{lstlisting}
+ assemble the discretisation matrix
+
+\end{lstlisting}
+\subsection{assemble\_potential\_matrix}
+${}$
+\begin{lstlisting}
+ assemble the discretisation matrix for potential flow
+
+\end{lstlisting}
+\subsection{boundary\_condition\_side\_outflow}
+${}$
+\begin{lstlisting}
+ apply boundary conditions for side outflow
+ p*phi + (1-p)*d/db phi = rhs
+ y : along channel coordinate
+ TODO, make this return the bc-struct
+
+\end{lstlisting}
+\subsection{boundary\_condition\_side\_outflow\_1}
+${}$
+\begin{lstlisting}
+ apply boundary conditions
+ p*phi + (1-p)*d/db phi = rhs
+
+ TODO, make this return the bc-struct
+
+
+\end{lstlisting}
+\subsection{cut\_boundary}
+${}$
+\begin{lstlisting}
+ cut the boundary from the domain
+ wa : width of inlet to side channel
+ wb : width of side channel
+
+\end{lstlisting}
+\subsection{cut\_rectangle}
+${}$
+\begin{lstlisting}
+ cut a rectangle from the domain
+ TODO, this requires also an adaptation of the derivative matrices
+       -> step over to semi-unstructured mesh
+
+\end{lstlisting}
+\section{potential-flow/@Potential\_Flow\_UM}
+\subsection{Potential\_Flow\_UM}
+${}$
+\begin{lstlisting}
+ numerical solver for flow on an unstructured mesh (triangulation)
+ by means of the Finite Element Method
+
+\end{lstlisting}
+\subsection{assemble\_potential\_matrix}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \section{rating-curve}
@@ -1050,6 +1202,36 @@ ${}$
  iterative (recursive) reflection and transmission
 
 \end{lstlisting}
+\section{open-channel-flow}
+\begin{lstlisting}
+functions for open channel flow, sub modules:
+
+@Backwater1D
+	gradually varied flow in 1D (backwater)
+@Potential_Flow
+	depth averaged potential flow, numerical solution
+@Potential_Flow_Analytic
+	depth averaged potential flow, analytical solution
+rating-curve
+	empirical rating curves
+@Side_Weir
+	analytical solution to lateral outflow over a side weir
+@SWE
+	dynamical solution of the shallow water equation (saint-venant-equation)
+	in 1D
+@SWE_2d
+	dynamical solution of the shallow water equation (saint-venant-equation)
+	in 2D
+velocity-profile
+	vertical and transverse velocity profiles of the streamwise velocity
+
+
+\end{lstlisting}
+\subsection{stage2discharge}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \section{test/test\_Backwater1D}
 \subsection{test\_bw1d\_solve\_matrix}
 ${}$
@@ -1086,6 +1268,7 @@ ${}$
 \subsection{chezy2manning}
 ${}$
 \begin{lstlisting}
+ convert chezy to manning
 
 \end{lstlisting}
 \subsection{chezy2z0}
@@ -1120,9 +1303,15 @@ ${}$
 \subsection{manning2chezy}
 ${}$
 \begin{lstlisting}
+ manning to chezy conversion
 
 \end{lstlisting}
 \subsection{manning2drag}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{manning2kc}
 ${}$
 \begin{lstlisting}
 
@@ -1180,11 +1369,6 @@ ${}$
 
 \end{lstlisting}
 \subsection{z02ks}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
-\subsection{z0tochezy}
 ${}$
 \begin{lstlisting}
 

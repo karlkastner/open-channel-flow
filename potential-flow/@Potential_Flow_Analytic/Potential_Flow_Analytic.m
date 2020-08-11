@@ -23,7 +23,6 @@
 classdef Potential_Flow_Analytic < Potential_Flow
 	properties
 		fun
-		funfilename  = 'lateral-outflow-functions.mat';
 	end
 	properties (Access = protected)
 	end % methods
