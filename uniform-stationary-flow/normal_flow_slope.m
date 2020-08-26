@@ -5,11 +5,21 @@
 %
 %% normal flow slope in uniform stationary flow
 % function S = normal_flow_slope(Q,H,W,C)
-function S = normal_flow_slope(Q,H,W,C,ismanning)
-	if (nargin()>4&ismanning)
-		C = C.*H.^(1/6);
+function S = normal_flow_slope(Q,H,W,cf,type)
+	if (nargin()<5 | isempty(type))
+		type = 'chezy';
 	end
-	S = sign(Q).*1./H.^3.*(Q./(C.*W)).^2;
+	switch (type)
+	case {'drag','cd'}
+		Cz = drag2chezy(cf);
+	case {'chezy'}
+		Cz = cf;
+	case {'manning'}
+		Cz = cf.*H.^(1/6);
+	otherwise
+		error('here');
+	end
+	S = sign(Q).*1./H.^3.*(Q./(Cz.*W)).^2;
 	% S = Q.^2./(W.^2.*C.^2.*H.^3);
 end
 
