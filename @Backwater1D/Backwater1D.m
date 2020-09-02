@@ -60,7 +60,7 @@ classdef Backwater1D < handle
 			% does not work, because of recursion
 			% obj.rt = River_Tide();
 			if (isempty(obj.rt))
-				obj.rt = River_Tide('backwater',obj);
+				%obj.rt = River_Tide('backwater',obj);
 			end
 		end
 
