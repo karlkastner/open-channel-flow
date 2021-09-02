@@ -16,7 +16,7 @@ breaklines=true
 \setlength{\cftsubsecnumwidth}{3.5em}
 
 \title{Manual for Package:
-open-channel-flow\protect\\Revision 11M
+open-channel-flow\protect\\Revision 11:12M
 }
 \author{Karl K\"astner}
 %\date{}
@@ -534,17 +534,22 @@ velocity-profile
 
 
 \end{lstlisting}
-\subsection{boundary\_layer\_height}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
 \subsection{cdf\_hydrograph}
 ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{derive\_discharge\_step\_response}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{discharge2stage}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{eddy\_diffusivity}
 ${}$
 \begin{lstlisting}
 
@@ -603,6 +608,11 @@ ${}$
 \begin{lstlisting}
  Transverse profile of the bed level and bed material grain size in
  an equilibrium (infintely long) meander bend
+
+\end{lstlisting}
+\subsection{Qs}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{bed\_profile}
@@ -683,6 +693,11 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{meander\_centreline}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{random\_meander}
 ${}$
 \begin{lstlisting}
@@ -695,6 +710,11 @@ ${}$
 
 \end{lstlisting}
 \subsection{test\_rozovskii}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{transverse\_slope\_rozovskii}
 ${}$
 \begin{lstlisting}
 
@@ -898,6 +918,12 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\section{potential-flow}
+\subsection{poisseuille\_flow\_rate}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \section{rating-curve}
 \subsection{ChezyRatingCurve}
 ${}$
@@ -1001,6 +1027,36 @@ ${}$
 ${}$
 \begin{lstlisting}
  determine channel width
+
+\end{lstlisting}
+\section{open-channel-flow}
+\begin{lstlisting}
+functions for open channel flow, sub modules:
+
+@Backwater1D
+	gradually varied flow in 1D (backwater)
+@Potential_Flow
+	depth averaged potential flow, numerical solution
+@Potential_Flow_Analytic
+	depth averaged potential flow, analytical solution
+rating-curve
+	empirical rating curves
+@Side_Weir
+	analytical solution to lateral outflow over a side weir
+@SWE
+	dynamical solution of the shallow water equation (saint-venant-equation)
+	in 1D
+@SWE_2d
+	dynamical solution of the shallow water equation (saint-venant-equation)
+	in 2D
+velocity-profile
+	vertical and transverse velocity profiles of the streamwise velocity
+
+
+\end{lstlisting}
+\subsection{residual\_swe}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \section{shallow-water/@SWE}
@@ -1304,6 +1360,27 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\section{turbulence}
+\subsection{boundary\_layer\_height}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{kolmogorov\_length}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{kolmogorov\_time}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{kolmogorov\_velocity}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \section{uniform-stationary-flow}
 \subsection{chezy2drag}
 ${}$
@@ -1330,6 +1407,12 @@ ${}$
 ${}$
 \begin{lstlisting}
  critical flow depth in uniform stationary flow
+
+\end{lstlisting}
+\subsection{discharge\_step\_response}
+${}$
+\begin{lstlisting}
+		Q(:) = 0;
 
 \end{lstlisting}
 \subsection{drag2chezy}
@@ -1384,6 +1467,12 @@ ${}$
  normal flow discharge for uniform stationary flow
 
 \end{lstlisting}
+\subsection{normal\_flow\_roughness}
+${}$
+\begin{lstlisting}
+ roughness coefficient from uniform stationary flow
+
+\end{lstlisting}
 \subsection{normal\_flow\_slope}
 ${}$
 \begin{lstlisting}
@@ -1395,6 +1484,12 @@ ${}$
 ${}$
 \begin{lstlisting}
  normal flow velocity in uniform stationary flow
+
+\end{lstlisting}
+\subsection{normal\_flow\_width}
+${}$
+\begin{lstlisting}
+ normal flow width for uniform stationary flow
 
 \end{lstlisting}
 \subsection{normal\_shear\_velocity}

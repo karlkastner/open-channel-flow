@@ -17,7 +17,7 @@ function dh_dr = dh_dr(obj,r,h,d_mm,f,u_bar)
 	D = 1e-3*d_mm(r);
 	f = f(r);
 
-	tau_c  = critical_shear_stress(1e3*D);
+	tau_c  = critical_shear_stress(1e3*D,obj.T_C);
 
 	sqrt_shields = us_bar/sqrt((rhos-rhow)/rhow*g*D);
 	Fr = f.*r./Rc;

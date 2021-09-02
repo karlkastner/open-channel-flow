@@ -6,9 +6,15 @@ function dh_dx = dh_dx_(obj,h,Q0,Qt,Qmid,Qhr,C,W,dzb_dx)
 
 	% momentum coefficient
 	beta = obj.beta;
-
-	p   = -obj.rt.friction_coefficient_dronkers(abs(Q0)./Qhr);
-
+	
+	if (~isempty(Qt))
+		% TODO attenuation of the tide
+		p = -obj.rt.friction_coefficient_dronkers(abs(Q0)./Qhr);
+	else
+		p = -pi*[0,0,1];
+		Qt = 0; 
+		Qhr = 0; 
+	end
 
 	if (~issym(h))
 		h(h<0) = sqrt(eps);

@@ -32,6 +32,8 @@ classdef Equilibrium_Bend < handle
 		% steps across channel
 		nx      = 100;
 		maxiter = 100;
+
+		% TODO out struct
 		% computed depth
 		h
 		% computed grain size
@@ -40,6 +42,7 @@ classdef Equilibrium_Bend < handle
 		odeset;
 		relaxation = struct('gsd',0.1);
 		%u_bar = 1;
+		T_C = 25;
 	end % properties
 	methods
 		function obj = Equilibrium_Bend()
@@ -91,16 +94,6 @@ classdef Equilibrium_Bend < handle
 			u_bar = sum(h.*u)./sum(h);
 		end
 
-		function Qs = Qs(obj,h)
-			if (nargin()<2)
-				h = obj.h;
-			end
-			u  = obj.u(h);
-			% TODO account for grain size
-			p  = 5;
-			D  = 1e-3*obj.D;	
-			Qs = mean((u.^p)./obj.D)*obj.width;
-		end
 
 %		function Q = discharge(obj,h)
 %			r = obj.r;

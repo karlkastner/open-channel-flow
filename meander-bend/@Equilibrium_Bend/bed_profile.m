@@ -24,6 +24,7 @@ function [r, h, D, f] = bed_profile(obj)
 	k = 0;
 	% TODO use pade
 	% TODO hc must be adapated for continuity of transport
+	l = 0.5;
 	while (1)
 		k = k+1;
 
@@ -44,10 +45,10 @@ function [r, h, D, f] = bed_profile(obj)
 
 		% stack
 		r_h = [flipud(r_h_l(2:end)); r_h_r];
-		h   = [flipud(h_l(2:end)); h_r];
+		h_   = [flipud(h_l(2:end)); h_r];
 
 		% interpolate to grid points
-		h = interp1(r_h,h,r);
+		h = (1-l)*h + (l)*cvec(interp1(r_h,h_,r));
 		if (k>obj.maxiter)
 			break;
 		end
@@ -56,7 +57,7 @@ function [r, h, D, f] = bed_profile(obj)
 %		Q = 
 		Qs = obj.Qs(h);
 		Qs0 = obj.Qs0;
-		p = (1 + max(-0.1,min(0.1,0.1*(Qs-Qs0)./Qs)));
+		p = (1 + max(-0.1,min(0.1,0.1*(Qs-Qs0)./Qs)))
 		Hc = Hc*p;
 		h  = h*p;
 	end % while 1
