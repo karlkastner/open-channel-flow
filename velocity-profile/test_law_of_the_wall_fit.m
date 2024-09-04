@@ -38,7 +38,7 @@ C   = [];
 A   = vander_1d((z-zt),p);
 D = diag(1./factorial(0:p))
 for idx=0:p
-	Ar(:,idx+1) = vanderd_1d(z0,idx,3)
+	Ar(:,idx+1) = vanderd_1d(z0,3,idx)
 	% regress
 	if (0==idx)
 		rhs = us/kappa*log(zt/z0);

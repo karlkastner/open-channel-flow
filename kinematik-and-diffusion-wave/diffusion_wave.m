@@ -1,6 +1,19 @@
 % 2017-01-09 19:14:31.475367378 +0100
 % Karl Kastner, Berlin
 %
+%  This program is free software: you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation, either version 3 of the License, or
+%  (at your option) any later version.
+%
+%  This program is distributed in the hope that it will be useful,
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%  GNU General Public License for more details.
+%
+%  You should have received a copy of the GNU General Public License
+%  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+%
 %% propagation of a diffusion wave (flood wave), c.f. ponce
 %
 function [tt, x, QQ] = diffusion_wave(T,L,Q0func,bcfunc,C,S0,W,dt,dx,dfactor,method,tfactor)

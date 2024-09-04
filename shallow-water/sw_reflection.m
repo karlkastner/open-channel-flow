@@ -3,7 +3,7 @@
 %% cross section (sudden change of admittance)
 %% c.f. lighthill, ippen-harleman
 function [ar, at] = sw_reflection(h1,w1,h2,w2)
-	g = 9.81;
+	g = Constant.gravity;
 	% wave numbers
 	c1 = sqrt(g*h1);
 	c2 = sqrt(g*h2);

@@ -4,7 +4,15 @@
 %
 %% normal flow depth for uniform stationary flow
 %% function H = normal_flow_depth(Q,W,C,S)
-function H = normal_flow_depth(Q,W,cf,S,type) %ismanning)
+function H = normal_flow_depth(Q,W,cf,S,type)
+	if (isnumeric(type))
+		ismanning = type;
+		if (ismanning)
+			type = 'manning';
+		else
+			type = 'chezy';
+		end
+	end
 	if (nargin()<5 || isempty(type))
 		type = 'chezy';
 	end
@@ -16,8 +24,6 @@ function H = normal_flow_depth(Q,W,cf,S,type) %ismanning)
 		Cz = cf;
 		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
 	case {'manning','n'}
-	%H = cbrt(Q.^2./(W.^2*S));
-	%if (nargin()>4 && ~isempty(ismanning) && ismanning)
 		n = cf;
 		H = ( (Q.*n)./(sqrt(S).*W) ).^(3/5);
 	otherwise

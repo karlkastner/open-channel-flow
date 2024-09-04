@@ -4,7 +4,9 @@
 %% transmission and reflection coefficient depend on direction !
 %% iterative (recursive) reflection and transmission
 % TODO consider phase shift
-function [ar_r at_r kdx] = sw_reflection_stepwise(h1,w1,h2,w2,L,f,n)
+% f : frequency
+% L : length
+function [ar_r, at_r, kdx] = sw_reflection_stepwise(h1,w1,h2,w2,L,f,n)
 	% TODO use tol
 	tol = 1e-4;
 
@@ -34,11 +36,11 @@ else
 	wc = w1*(w2/w1)^(1/n);
 	hc = h1*(h2/h1)^(1/n);
 
-	[ar_ at_] = sw_reflection(h1,w1,hc,wc);
+	[ar_, at_] = sw_reflection(h1,w1,hc,wc);
 %	[ar_ at_] = sw_reflection(hc,wc,h2,w2)
 
 	% backward coefficient
-	[ar_b_ at_b_] = sw_reflection(hc,wc,h1,w1);
+	[ar_b_, at_b_] = sw_reflection(hc,wc,h1,w1);
 %	[ar_b_ at_b_] = sw_reflection(h2,w2,hc,wc)
 
 

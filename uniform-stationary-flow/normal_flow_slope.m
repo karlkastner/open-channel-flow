@@ -9,17 +9,17 @@ function S = normal_flow_slope(Q,H,W,cf,type)
 	if (nargin()<5 | isempty(type))
 		type = 'chezy';
 	end
-	switch (type)
+	switch (lower(type))
 	case {'drag','cd'}
 		Cz = drag2chezy(cf);
-	case {'chezy'}
+	case {'c','cz','chezy'}
 		Cz = cf;
 	case {'manning'}
-		Cz = cf.*H.^(1/6);
+		Cz = manning2chezy(cf,H);
+		%cf.*H.^(1/6);
 	otherwise
 		error('here');
 	end
 	S = sign(Q).*1./H.^3.*(Q./(Cz.*W)).^2;
-	% S = Q.^2./(W.^2.*C.^2.*H.^3);
 end
 

@@ -3,11 +3,8 @@
 %% normal flow velocity in uniform stationary flow
 % function U = normal_flow_velocity(Q,W,C,S)
 %
-function U = normal_flow_velocity(Q,W,C,S,ismanning)
-	if (nargin<5)
-		ismanning = [];
-	end
-	H = normal_flow_depth(Q,W,C,S,ismanning);
+function U = normal_flow_velocity(Q,W,C,S,varargin)
+	H = normal_flow_depth(Q,W,C,S,varargin{:});
 	U = Q./(H.*W);
 end
 
