@@ -1,5 +1,4 @@
-% 2016-05-17 13:37:38.441944219 +0200
-% 2017-09-05 00:41:54.131459023 +0800
+% 2025-05-13 12:00:39.611392059 +0200
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -15,33 +14,23 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 %
-%
-%% normal flow depth for uniform stationary flow
-%% function H = normal_flow_depth(Q,W,C,S)
-function H = normal_flow_depth(Q,W,cf,S,type)
-	if (nargin()<5 || isempty(type))
-		type = 'chezy';
+% c1 : linear friction coefficient
+% function u = flow_combined_resistance_velocity(h,S,c1,c2)
+function u = flow_combined_resistance_velocity(h,S,c1,c2)
+	if (~issym(h))
+		g = Constant.gravity;
+	else
+		syms g;
 	end
-	if (isnumeric(type))
-		ismanning = type;
-		if (ismanning)
-			type = 'manning';
-		else
-			type = 'chezy';
-		end
-	end
-	switch (lower(type))
-	case {'drag','cd'}
-		Cz = drag2chezy(cf);
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'chezy','cz'}
-		Cz = cf;
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'manning','n'}
-		n = cf;
-		H = ( (Q.*n)./(sqrt(S).*W) ).^(3/5);
-	otherwise
-		error('here');
+	den = sqrt(c1.*c1 + 4*g*c2.*abs(S).*h.*h.*h);
+	% velocity at interfaces
+	% note that den > c1, so flow is always directed against the slope
+	% except for the special case c2 = 0, which is captured below
+	u  = sign(S).*(c1 - den)./(2*c2.*h);
+	% capture special case
+	if (~issym(c2))
+		fdx = (c2 == 0);
+		u(fdx) = -g*(h(fdx).*h(fdx).*S(fdx))./c1(fdx);
 	end
 end
 

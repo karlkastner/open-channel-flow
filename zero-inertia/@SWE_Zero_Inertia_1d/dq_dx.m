@@ -1,4 +1,4 @@
-% Sun 10 Nov 17:48:39 +08 2019
+% 2024-09-27 15:22:58.952603374
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -14,18 +14,12 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 %
+% note: this is actually -dx/dx
+function dqdx = dqdx(obj,t,h)
+	dx = obj.dx;
 
-bw = Backwater1D();
+	qi = obj.interface_values(t,h,false,false);
 
-Xi = [0,5e5];
-x = linspace(Xi(1),Xi(end))';
-Q0 = 1e4;
-w = 500;
-zb = -15*(1 - x/3e5);
-zs = [];
-
-x0 = x(1);
-z0 = 0;
-
-z = bw.solve_matrix(x,zs,Q0,Qt,Qmid,Qhr,chezy,width,zb,x0,z0)
+	dqdx = (qi(1:end-1) - qi(2:end))/dx;
+end
 

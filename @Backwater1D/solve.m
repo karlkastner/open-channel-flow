@@ -1,6 +1,20 @@
 % 2016-04-08 11:15:55.270978358 +0200
 % Karl Kastner, Berlin
 %
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <https://www.gnu.org/licenses/>.
+%
+%
 %% solve the gradually varied flow equation (backwater equation)
 %% C : chezy
 %% W : width
@@ -16,6 +30,9 @@
 function [x, h, zs, dh_dx, dzs_dx] = solve(obj,Q0,Qt,chezy,width,zb,z0_downstream,X)
 	obj.X  = X;
 	obj.Q0 = Q0;
+%	if (isempty(Qt))
+%		Qt = 0;
+%	end
 	obj.Qt_ = Qt;
 	obj.chezy_ = chezy;
 	obj.width_ = width;
@@ -27,7 +44,7 @@ if (0)
 	h  = zs-zb;
 else
 	% initial depth
-	h0 = z0_downstream-min(obj.zb(X)); %(1));
+	h0 = z0_downstream-min(obj.zb(X(1))); %(1));
 
 	% solve backwater ODE
 	% the equation is solved for the flow depth, not surface elevation,
@@ -57,7 +74,7 @@ else
 end % else of if 0
 
 	if (nargout() > 3)
-		dh_dx = obj.dh_dx(x,h,Q,C,S0,W);
+		dh_dx = obj.dh_dx(x,h,Q0,chezy,S0,W);
 	end
 
 	if (nargout() > 4)

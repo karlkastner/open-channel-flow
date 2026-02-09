@@ -1,4 +1,4 @@
-% Sun 10 Nov 17:48:39 +08 2019
+% Mon 25 Aug 14:25:58 CEST 2025
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -14,18 +14,16 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 %
-
-bw = Backwater1D();
-
-Xi = [0,5e5];
-x = linspace(Xi(1),Xi(end))';
-Q0 = 1e4;
-w = 500;
-zb = -15*(1 - x/3e5);
-zs = [];
-
-x0 = x(1);
-z0 = 0;
-
-z = bw.solve_matrix(x,zs,Q0,Qt,Qmid,Qhr,chezy,width,zb,x0,z0)
+function du_dh = flow_combined_resistance_du_dh(h,S,c1,c2)
+	if (~issym(h))
+		g = Constant.gravity;
+	else
+		syms g;
+	end
+	% velocity at interfaces
+	den = sqrt(c1.^2 + 4*g*c2.*abs(S).*h.^3);
+	u   = sign(S).*(c1 - den)./(2*c2.*h);
+	
+	du_dh = -u./h - 3*g*abs(S).*h./den;
+end % du_dh
 

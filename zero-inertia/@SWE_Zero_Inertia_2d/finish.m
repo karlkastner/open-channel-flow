@@ -1,4 +1,4 @@
-% Sun 10 Nov 17:48:39 +08 2019
+% 2025-07-23 18:34:37.740271444 +0200
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -13,19 +13,17 @@
 % 
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
-%
-
-bw = Backwater1D();
-
-Xi = [0,5e5];
-x = linspace(Xi(1),Xi(end))';
-Q0 = 1e4;
-w = 500;
-zb = -15*(1 - x/3e5);
-zs = [];
-
-x0 = x(1);
-z0 = 0;
-
-z = bw.solve_matrix(x,zs,Q0,Qt,Qmid,Qhr,chezy,width,zb,x0,z0)
+% note: the function returns dh/dt, is is named dz_dt to be comptible
+function finish(obj,z)
+	%if (~obj.aux.surface_flow)
+	%	z(end+1:end+prod(obj.nx)) = 0;
+	%end
+	finish@SWE_Zero_Inertia_1d(obj,z);
+	if (obj.opt.output.store_fluxes)
+		no = obj.aux.odx;
+		obj.out.flow_y = obj.out.flow_y(1:no,:);
+		obj.out.celerity_y = obj.out.celerity_y(1:no,:);
+		obj.out.diffusion_y = obj.out.diffusion_y(1:no,:);
+	end
+end
 

@@ -1,4 +1,4 @@
-% 2016-05-17 13:37:38.441944219 +0200
+% 2025-07-23 18:34:37.740271444 +0200
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -13,28 +13,29 @@
 % 
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
-%
-%% normal flow discharge for uniform stationary flow
-% function Q = normal_flow_discharge(H,W,C,S)
-% TODO, the sign is wrong (!)
-function Q = normal_flow_discharge(H,W,C,S,type)
-	if (nargin()>4)
-	switch (lower(type))
-	case {'n','manning'}
-		% C arg is actually n
-		C = manning2chezy(C,H);
-	case {'chezy','cz'}
-		% nothing to do, default
-	case {'drag','cd'}
-		C = drag2chezy(C);
-	otherwise
-		error('here');
+function store(obj,t,z)
+	% call superclass storage function
+	store@RAD_Model(obj,t,z);
+
+	odx = obj.aux.odx;
+	no = size(obj.out.h,1); %length(obj.out.esum);
+	if (obj.opt.output.store_fluxes)
+	if (odx > no)
+		% reallocate
+		no = 2*no;
+		obj.out.h(no,1) = 0;
+		obj.out.flow_x(no,1) = 0;
+		obj.out.flow(no,1) = 0;
+		obj.out.precipitation(no,1) = 0;
+		obj.out.duration(no,1) = 0;
+		obj.out.n_step_swe(no,1) = 0;
+		obj.out.n_step_zie(no,1) = 0;
+		obj.out.twet(no,1) = 0;
+		obj.out.infiltration(no,1) = 0;
+		obj.out.celerity_x(no,1) = 0;
+		obj.out.diffusion_x(no,1) = 0;
+		% TODO normalize diffusion of last time step by dt
 	end
 	end
-	%H = cbrt(Q.^2./(W.^2*S));
-%	H = (Q.^2./(C.^2.*W.^2.*S)).^(1/3);
-	U = C.*sqrt(H.*S);
-	A = H.*W;
-	Q = A.*U;
-end
+end % store
 

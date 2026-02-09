@@ -1,4 +1,19 @@
 % 2016-04-08 11:15:55.270978358 +0200
+% Karl Kastner, Berlin
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <https://www.gnu.org/licenses/>.
+%
 function dh_dx = dh_dx_(obj,h,Q0,Qt,Qmid,Qhr,C,W,dzb_dx)
 
 	% acceleration by gravity
@@ -58,6 +73,7 @@ function dh_dx = dh_dx_(obj,h,Q0,Qt,Qmid,Qhr,C,W,dzb_dx)
 
 	% change of flow depth along channel
 	%dh_dx = (S_f - S_w - S_b)./(1 - F2);
-	dh_dx = (-dzb_dx + S_f)./(1 - F2);
+	dh_dx = (S_f - dzb_dx)./(1 - F2);
+	%dh_dx = (-dzb_dx + S_f)./(1 - F2);
 end
 

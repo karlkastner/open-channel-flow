@@ -1,4 +1,4 @@
-% Sun 10 Nov 17:48:39 +08 2019
+% Mon 25 Aug 14:42:41 CEST 2025
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -14,18 +14,17 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 %
-
-bw = Backwater1D();
-
-Xi = [0,5e5];
-x = linspace(Xi(1),Xi(end))';
-Q0 = 1e4;
-w = 500;
-zb = -15*(1 - x/3e5);
-zs = [];
-
-x0 = x(1);
-z0 = 0;
-
-z = bw.solve_matrix(x,zs,Q0,Qt,Qmid,Qhr,chezy,width,zb,x0,z0)
-
+% function celerity = flow_combined_resistance_celerity(h,S,c1,c2)
+function celerity = flow_combined_resistance_celerity(h,S,c1,c2)
+	if (~issym(h))
+		g = Constant.gravity;
+	else
+		syms g;
+	end
+	den = sqrt(c1.*c1 + 4*g*c2.*abs(S).*h.*h.*h);
+	celerity = -(3*g*S.*h.*h)./den;
+end
+	
+	% for h const
+	% cel/cel0 = S/S0*
+	% (2*S/S0)/sqrt(p^2 - 4*(1 + p)*pS)

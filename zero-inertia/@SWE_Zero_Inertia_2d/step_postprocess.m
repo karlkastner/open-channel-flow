@@ -1,4 +1,4 @@
-% Sun 10 Nov 17:48:39 +08 2019
+% 2025-09-09 12:48:27.831974714 +0200
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -13,19 +13,17 @@
 % 
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
-%
-
-bw = Backwater1D();
-
-Xi = [0,5e5];
-x = linspace(Xi(1),Xi(end))';
-Q0 = 1e4;
-w = 500;
-zb = -15*(1 - x/3e5);
-zs = [];
-
-x0 = x(1);
-z0 = 0;
-
-z = bw.solve_matrix(x,zs,Q0,Qt,Qmid,Qhr,chezy,width,zb,x0,z0)
+function step_postprocess(obj,hnew)
+	told = obj.aux.told;
+	dt = obj.aux.dt;
+	% call parent class function
+	step_postprocess@SWE_Zero_Inertia_1d(obj,hnew);
+	if (obj.opt.output.store_fluxes)
+		% TODO account for stages
+		odx = obj.aux.odx;
+		obj.out.flow_y(odx,:) = obj.out.flow_y(odx,:) + dt.*rvec(obj.aux.qyj(:));
+		obj.out.celerity_y(odx,:) = obj.out.celerity_y(odx,:) + dt.*rvec(obj.aux.aj(:));
+		obj.out.diffusion_y(odx,:) = obj.out.diffusion_y(odx,:) + dt.*rvec(obj.aux.dj(:));
+	end
+end
 

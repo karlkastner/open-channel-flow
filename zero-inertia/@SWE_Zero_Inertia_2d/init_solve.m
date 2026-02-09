@@ -1,5 +1,4 @@
-% 2016-05-17 13:37:38.441944219 +0200
-% 2017-09-05 00:41:54.131459023 +0800
+% 2025-08-06 19:13:15.897720793 +0200
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -14,34 +13,22 @@
 % 
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
-%
-%
-%% normal flow depth for uniform stationary flow
-%% function H = normal_flow_depth(Q,W,C,S)
-function H = normal_flow_depth(Q,W,cf,S,type)
-	if (nargin()<5 || isempty(type))
-		type = 'chezy';
-	end
-	if (isnumeric(type))
-		ismanning = type;
-		if (ismanning)
-			type = 'manning';
+% note: the function returns dh/dt, is is named dz_dt to be comptible
+function init_solve(obj)
+	init_solve@SWE_Zero_Inertia_1d(obj);
+
+	if (obj.opt.output.store_fluxes)
+		if (isfield(obj.opt.output,'no'))
+			no = obj.opt.output.no;
 		else
-			type = 'chezy';
+			no           = length(obj.out.to);
 		end
-	end
-	switch (lower(type))
-	case {'drag','cd'}
-		Cz = drag2chezy(cf);
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'chezy','cz'}
-		Cz = cf;
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'manning','n'}
-		n = cf;
-		H = ( (Q.*n)./(sqrt(S).*W) ).^(3/5);
-	otherwise
-		error('here');
+		nxj = obj.nx;
+		nxj(2) = nxj(2)+1;
+		output_class_str = func2str(obj.opt.output.class);
+		obj.out.flow_y = zeros(no,prod(nxj),output_class_str);
+		obj.out.diffusion_y   = zeros(no,prod(nxj),output_class_str);
+		obj.out.celerity_y    = zeros(no,prod(nxj),output_class_str);
 	end
 end
 

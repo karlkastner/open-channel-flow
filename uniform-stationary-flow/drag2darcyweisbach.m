@@ -1,5 +1,4 @@
-% 2016-05-17 13:37:38.441944219 +0200
-% 2017-09-05 00:41:54.131459023 +0800
+% 2017-09-14 13:51:14.099671825 +0200
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -15,33 +14,16 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 %
-%
-%% normal flow depth for uniform stationary flow
-%% function H = normal_flow_depth(Q,W,C,S)
-function H = normal_flow_depth(Q,W,cf,S,type)
-	if (nargin()<5 || isempty(type))
-		type = 'chezy';
+%% convert drag coefficient to chezy coefficient
+%% g dz_s/dx + cd w u^2/h   = 0 (swe formalism)
+%%      - S  +  1/C^2 U^2/H = 0 (chezy formalism)
+function f = drag2darcyweisbach(cdq)
+	if (issym(cd))
+		syms g
+	else
+		g = Constant.gravity;
 	end
-	if (isnumeric(type))
-		ismanning = type;
-		if (ismanning)
-			type = 'manning';
-		else
-			type = 'chezy';
-		end
-	end
-	switch (lower(type))
-	case {'drag','cd'}
-		Cz = drag2chezy(cf);
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'chezy','cz'}
-		Cz = cf;
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'manning','n'}
-		n = cf;
-		H = ( (Q.*n)./(sqrt(S).*W) ).^(3/5);
-	otherwise
-		error('here');
-	end
+	C = sqrt(g./cdq);
+	f = chezy2darcy_weisbach(C);
 end
 

@@ -1,4 +1,4 @@
-% Sun 10 Nov 17:48:39 +08 2019
+% Wed 25 Mar 10:05:49 +08 2020
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -14,18 +14,13 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 %
-
-bw = Backwater1D();
-
-Xi = [0,5e5];
-x = linspace(Xi(1),Xi(end))';
-Q0 = 1e4;
-w = 500;
-zb = -15*(1 - x/3e5);
-zs = [];
-
-x0 = x(1);
-z0 = 0;
-
-z = bw.solve_matrix(x,zs,Q0,Qt,Qmid,Qhr,chezy,width,zb,x0,z0)
-
+% c.f. engmann 1986
+function C = darcy_weisbach2chezy(f)
+	if (issym(f))
+		syms g positive
+	else
+		g = Constant.gravity;
+	end
+	% TODO this was 2g/f, why?
+	C = sqrt(8*g./f);
+end

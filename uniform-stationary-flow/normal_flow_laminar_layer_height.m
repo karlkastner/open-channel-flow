@@ -1,4 +1,4 @@
-% Sun 10 Nov 17:48:39 +08 2019
+% Tue  3 Jun 09:47:30 CEST 2025
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -13,19 +13,10 @@
 % 
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
-%
-
-bw = Backwater1D();
-
-Xi = [0,5e5];
-x = linspace(Xi(1),Xi(end))';
-Q0 = 1e4;
-w = 500;
-zb = -15*(1 - x/3e5);
-zs = [];
-
-x0 = x(1);
-z0 = 0;
-
-z = bw.solve_matrix(x,zs,Q0,Qt,Qmid,Qhr,chezy,width,zb,x0,z0)
+function delta = normal_flow_laminar_layer_height(h,S)
+	g = 9.81;
+	nukin = 1e-6;
+	us = sqrt(g*h*S);
+	delta = 11.6*nukin/us;
+end
 

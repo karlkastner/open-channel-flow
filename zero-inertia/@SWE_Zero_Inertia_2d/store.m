@@ -1,4 +1,4 @@
-% Sun 10 Nov 17:48:39 +08 2019
+% 2025-07-23 18:34:37.740271444 +0200
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -13,19 +13,23 @@
 % 
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
-%
+function store(obj,t,z)
+	% call superclass storage function
+	store@SWE_Zero_Inertia_1d(obj,t,z);
 
-bw = Backwater1D();
-
-Xi = [0,5e5];
-x = linspace(Xi(1),Xi(end))';
-Q0 = 1e4;
-w = 500;
-zb = -15*(1 - x/3e5);
-zs = [];
-
-x0 = x(1);
-z0 = 0;
-
-z = bw.solve_matrix(x,zs,Q0,Qt,Qmid,Qhr,chezy,width,zb,x0,z0)
+	odx = obj.aux.odx;
+	no = size(obj.out.flow_y,1); %obj.out.esum);
+	if (obj.opt.output.store_fluxes)
+	if (odx > no)
+		% reallocate
+		%no = length(obj.out.to);
+		no = 2*no;
+	%if (obj.opt.output.store_fluxes)
+		%no = length(obj.out.to);
+		obj.out.flow_y(no,1) = 0;
+		obj.out.celerity_y(no,1) = 0;
+		obj.out.diffusion_y(no,1) = 0;
+		% TODO normalize diffusion of last time step by dt
+	end
+end
 

@@ -1,5 +1,4 @@
-% 2016-05-17 13:37:38.441944219 +0200
-% 2017-09-05 00:41:54.131459023 +0800
+% 2025-05-13 12:00:39.611392059 +0200
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -15,33 +14,19 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 %
-%
-%% normal flow depth for uniform stationary flow
-%% function H = normal_flow_depth(Q,W,C,S)
-function H = normal_flow_depth(Q,W,cf,S,type)
-	if (nargin()<5 || isempty(type))
-		type = 'chezy';
+function [a,d] = flow_combined_resistance_advection(h,S,c1,c2)
+	if (~issym(h))
+	g = 9.81;
+	else
+		syms g;
 	end
-	if (isnumeric(type))
-		ismanning = type;
-		if (ismanning)
-			type = 'manning';
-		else
-			type = 'chezy';
-		end
-	end
-	switch (lower(type))
-	case {'drag','cd'}
-		Cz = drag2chezy(cf);
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'chezy','cz'}
-		Cz = cf;
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'manning','n'}
-		n = cf;
-		H = ( (Q.*n)./(sqrt(S).*W) ).^(3/5);
-	otherwise
-		error('here');
-	end
+	%u  = 0.5*sign(S).*(C*(C*lcd - sqrt(C*C*lcd*lcd + 4*abs(S).*h*g^2)))/g;
+	den = sqrt(c1.*c2 + 4*g*c2.*abs(S).*h.*h.*h);
+
+	a = - (3*g*S.*h.*h)./den;
+
+	% diffusion of the disharge wave, diffusion coefficient at the interface
+	% had sign S^2 in it
+	d =  (g.*h.^3)./den;
 end
 

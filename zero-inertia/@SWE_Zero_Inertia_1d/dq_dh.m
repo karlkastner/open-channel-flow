@@ -1,5 +1,4 @@
-% 2016-05-17 13:37:38.441944219 +0200
-% 2017-09-05 00:41:54.131459023 +0800
+% 2025-10-28 16:39:40.308760503 +0100
 % Karl Kastner, Berlin
 %
 % This program is free software: you can redistribute it and/or modify
@@ -15,33 +14,19 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 %
-%
-%% normal flow depth for uniform stationary flow
-%% function H = normal_flow_depth(Q,W,C,S)
-function H = normal_flow_depth(Q,W,cf,S,type)
-	if (nargin()<5 || isempty(type))
-		type = 'chezy';
-	end
-	if (isnumeric(type))
-		ismanning = type;
-		if (ismanning)
-			type = 'manning';
-		else
-			type = 'chezy';
-		end
-	end
-	switch (lower(type))
-	case {'drag','cd'}
-		Cz = drag2chezy(cf);
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'chezy','cz'}
-		Cz = cf;
-		H = (Q.^2./(Cz.^2.*W.^2.*abs(S))).^(1/3);
-	case {'manning','n'}
-		n = cf;
-		H = ( (Q.*n)./(sqrt(S).*W) ).^(3/5);
-	otherwise
-		error('here');
+function [dqxi_dhl,dqxi_dhc] = dqxi_dh(obj,t,h0)
+	[qi0] = obj.interface_values(t,h0);
+	epsh = sqrt(eps);
+	dqxi_dhl = zeros(obj.nx(1)+1,1);
+	dqxi_dhc = zeros(obj.nx(1)+1,1);
+	for idx=1:3
+			id = (idx:3:obj.nx(1))';
+			h = h0;
+			h(id) = h(id) + epsh;
+			[qi] = obj.interface_values(t,h);
+			dqi_dh = (qi - qi0)/epsh;
+			dqxi_dhc(id)   = dqi_dh(id);
+			dqxi_dhl(id+1) = dqi_dh(id+1);
 	end
 end
 
